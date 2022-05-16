@@ -9,6 +9,12 @@ body{
     background-color: #0F1121;
 }
 
+.container{
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
 
 /* fim do geral */
 
@@ -162,3 +168,21 @@ textarea:focus, input:focus {
     cursor: pointer;
 }
 /* fim login */
+
+/* Início Cadastro */
+
+#conteudo{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    height: 60vh;
+    width: 40vw;
+    border: 1px solid black;
+}
+
+/* Fim Cadastro */
