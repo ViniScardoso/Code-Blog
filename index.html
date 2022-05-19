@@ -5,34 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Blog - Login</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/imgs/Logo.png" type="image" href="style.css">
+    <title>Code Blog - Login</title>
 </head>
 
 <body>
     <div id="all">
         <div class="esquerda">
-            <img id="logoImagem" src="imgs/Logo.png" alt="">
+            <img id="logoImagem" src="assets/imgs/Logo.png" alt="">
 
             <h1>Olá! Seja bem vindo a Code Blog, Uma plataforma feita de dev para dev</h1>
-
+            
             <p>Não tem uma conta ainda?</p>
 
             <a href="cadastro.html"><button class="btn">Cadastre-se</button></a>
 
-            <img id="coders" src="imgs/Developer_05__Converted__generated.png" alt="">
+            <img id="coders" src="assets/imgs/Developer_05__Converted__generated.png" alt="">
 
         </div>
         <div class="direita">
             <div class="headerLogo">
-                <img id="logoLetras" src="imgs/CodeBlog.png" alt="logo codeblog">
+                <img id="logoLetras" src="assets/imgs/CodeBlog.png" alt="logo codeblog">
             </div>
 
             <h1>Login</h1>
             
             <div class="iptLogin">
                 <div class="imgIptLogin">
-                    <img src="imgs/user.png" alt="user">
+                    <img src="assets/imgs/user.png" alt="user">
                 </div>
                 <div class="iptLoginTextos">
                     <h3>Email</h3>
@@ -43,14 +44,14 @@
             
             <div class="iptLogin">
                 <div class="imgIptLogin">
-                    <img src="imgs/user.png" alt="user">
+                    <img src="assets/imgs/user.png" alt="user">
                 </div>
                 <div class="iptLoginTextos">
                     <h3>Senha</h3>
                     <input type="password" id="ipt_senha" class="inputsLogin" placeholder="Coloque a sua senha aqui">
                 </div>
                 <div class="olho">
-                    <img id="imagemOlho" onclick="mostrarSenha()" src="imgs/visibility.png" alt="">
+                    <img id="imagemOlho" onclick="mostrarSenha()" src="assets/imgs/visibility.png" alt="">
                 </div>
             </div>
 
@@ -62,11 +63,11 @@
 <script>
     function mostrarSenha() {
         if (ipt_senha.type == "password"){     
-            imagemOlho.src = "imgs/novisibility.png";
+            imagemOlho.src = "assets/imgs/novisibility.png";
             ipt_senha.type = "text";
         }
         else{
-            imagemOlho.src = "imgs/visibility.png";
+            imagemOlho.src = "assets/imgs/visibility.png";
             ipt_senha.type = "password";
         }
     }

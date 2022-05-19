@@ -1,12 +1,15 @@
 /* Geral (todas as páginas) */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-
 body{
     margin: 0;
     font-family: 'Poppins';
     color: white;
     background-color: #0F1121;
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }
 
 .container{
@@ -132,7 +135,7 @@ body{
 .inputsLogin{
     background-color: #41465A;
     width: 100%;
-    height: 50%;
+    height: 80%;
     border: none;
     margin-left: 2%;
     color: white;
@@ -172,6 +175,7 @@ textarea:focus, input:focus {
 /* Início Cadastro */
 
 #conteudo{
+    background-color: #393c4b;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -180,9 +184,64 @@ textarea:focus, input:focus {
 }
 
 .card{
-    height: 60vh;
+    height: 100vh;
     width: 40vw;
-    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* Fim Cadastro */
+
+/* Tela Home */
+/* Menu lateral */
+.sidebar *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 240px;
+    background-color: #393c4b;
+    padding: 6px 14px;
+}
+
+.sidebar .logo_content .logo{
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+}
+
+.sidebar .logo_content .logo img{
+    height: 30px;
+    margin-right: 5px;
+}
+
+.logo_content .logo .logo_name{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.sidebar #btn_menu {
+    position: absolute;
+    color: #fff;
+    left: 90%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+
+.sidebar ul{
+    margin-top: 20px;
+}
