@@ -19,36 +19,36 @@
                     Code Blog
                 </div>
             </div>
-            <i class='bx bx-menu' id="btn_menu"></i>
+            <i class='bx bx-menu bx-sm' id="btn_menu"></i>
         </div>
         <ul class="nav_list">
             <li>
+                <a href="home.html">
+                    <i class='bx bx-home-alt-2 bx-sm'></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li>
                 <a href="#">
-                    <i class='bx bx-chat'></i>
+                    <i class='bx bx-chat bx-sm'></i>
                     <span class="links_name">Fórum</span>
                 </a>
                 <span class="tooltip">Forum</span>
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bx-code'></i>
+                    <i class='bx bx-code bx-sm'></i>
                     <span class="links_name">Learn</span>
                 </a>
                 <span class="tooltip">Learn</span>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bx-user'></i>
+                <a href="profile.html">
+                    <i class='bx bx-user bx-sm'></i>
                     <span class="links_name">Account</span>
                 </a>
                 <span class="tooltip">Account</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Settings</span>
-                </a>
-                <span class="tooltip">Settings</span>
             </li>
         </ul>
         <div class="profile_content">
@@ -59,16 +59,62 @@
                         <div class="name">Vinicius Cardoso</div>
                     </div>
                 </div>
-                <i class='bx bx-log-out' id='logout'></i>
+                <a href="index.html">
+                    <i class='bx bx-log-out' id='logout'></i>
+                </a>
             </div>
         </div>
     </div>
     <!-- Page content begining  -->
     <div class="home_content">
         <div class="update_picture">
+                
             
+            <div style="display: flex">
+                <img src="assets/imgs/Profile.jpg" alt="">
+                
+                <div class="change_pictureText">
+                    <h1>Vinicius Cardoso</h1>
+                    <h4>Python</h4>
+                </div>
+            </div>
+
+            <div>
+                <label for="ipt_profileImg" class="upload_img">
+                    <input type="file" name="" id="ipt_profileImg">
+                    Upload
+                </label>
+            </div>
+
+                
         </div>
         <div class="user_information">
+            <h1>Informações do Usuário</h1>
+
+            <div style="display: flex;">
+                <div class="account_info">
+                    <h4>Nome:</h4>
+                    <input type="text" class="ipt_informations">
+    
+                    <h4>Senha:</h4>
+                    <input type="text" class="ipt_informations">
+                </div>
+    
+                <div class="account_info">
+                    <h4>Email:</h4>
+                    <input type="text" class="ipt_informations">
+                    
+                    <h4>Linguagem preferida:</h4>
+                    <input type="text" class="ipt_informations">
+                    
+                </div>
+
+            </div>
+
+            <div class="div_btn_update">
+                <button class="btn_update">Atualizar</button>  
+            </div>
+            
             
         </div>
     </div>

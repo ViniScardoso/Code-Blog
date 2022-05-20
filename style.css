@@ -12,12 +12,23 @@ body{
     overflow: hidden;
 }
 
+button{
+    font-family: 'Poppins';
+    color: #fff;
+}
 .container{
     width: 80%;
     margin: auto;
     display: flex;
 }
 
+a{
+    color: #fff;
+}
+
+input{
+    font-family: 'Poppins';
+}
 
 /* fim do geral */
 
@@ -60,9 +71,7 @@ body{
     top: 50px;
     font-weight: 700;
     color: white;
-    font-family: 'Poppins';
 }
-
 
 #coders{
     height: 50vh;
@@ -70,6 +79,7 @@ body{
 }
 
 #logoImagem{
+    margin-top: 3%;
     height: 13vh;
     width: 17vh;
 }
@@ -132,7 +142,7 @@ body{
     justify-content: center;
 }
 
-.sLogin{
+.inputsLogin{
     background-color: #41465A;
     width: 100%;
     height: 80%;
@@ -165,9 +175,7 @@ textarea:focus, input:focus {
     width: 70%;
     height: 5%;
     border: none;
-    color: white;
     font-weight: bolder;
-    font-family: 'Poppins';
     cursor: pointer;
 }
 /* fim login */
@@ -211,6 +219,7 @@ textarea:focus, input:focus {
     background-color: #393c4b;
     padding: 6px 14px;
     transition: all 0.5s ease;
+    z-index: 2;
 }
 
 .sidebar.active{
@@ -245,7 +254,6 @@ textarea:focus, input:focus {
 
 .sidebar #btn_menu {
     position: absolute;
-    color: #fff;
     left: 50%;
     top: 6px;
     font-size: 20px;
@@ -254,6 +262,7 @@ textarea:focus, input:focus {
     text-align: center;
     line-height: 50px;
     transform: translateX(-50%);
+    cursor: pointer;
 }
 
 .sidebar.active #btn_menu{
@@ -310,12 +319,9 @@ textarea:focus, input:focus {
     transition: all 0.4s ease;
     border-radius: 12px;
     white-space: nowrap;
+    
 }
 
-.sidebar ul li a:hover{
-    background-color: #fff;
-    color: #393c4b;
-}
 
 .sidebar ul li a i{
     height: 50px;
@@ -323,6 +329,11 @@ textarea:focus, input:focus {
     border-radius: 12px;
     line-height: 50px;
     text-align: center;
+}
+
+.sidebar ul li a:hover i{
+    background-color: #fff;
+    color: #393c4b;
 }
 
 .sidebar .links_name{
@@ -418,7 +429,7 @@ textarea:focus, input:focus {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
+    z-index: 1;
 }
 
 .home_content .text{
@@ -439,15 +450,112 @@ textarea:focus, input:focus {
 
 .update_picture{
     width: 85%;
-    height: 20%;
+    height: 25%;
     background-color: #393c4b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 5px 10px 18px black;
+    z-index: 1;
+}
 
+.update_picture img{
+    border-radius: 100%;
+    height: 100px;
+    margin: 0;
+    margin-left: 50px;
+}
+
+
+.change_pictureText{
+    display: flex;
+    flex-direction: column ;
+    margin-left: 10px;
+    justify-content: center;
+}
+
+.change_pictureText h1{
+    font-size: 25px;
+    margin: 0;
+    font-weight: lighter;
+}
+
+.change_pictureText h4{
+    font-size: 15px;
+    margin: 0;
+    font-weight: lighter;
+}
+
+#ipt_profileImg{
+    display: none;
+}
+
+.upload_img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 2px solid #0F1121;
+    height: 40px;
+    width: 80px;
+    cursor: pointer;
+    margin-right: 50px;
 }
 
 .user_information{
     width: 85%;
-    height: 50%;
+    height: 53%;
     background-color: #393c4b;
     margin-top: 5%;
+    position: relative;
+    z-index: 1;
+    box-shadow: 5px 10px 18px black;
 }
 
+.user_information h1{
+    margin-bottom: 10px;
+    font-weight: lighter;
+    font-size: 30px;
+    margin-left: 50px;
+}
+
+.user_information h4{
+    font-size: 15px;
+    font-weight: lighter;
+    margin: 0;
+    margin-left: 50px;
+}
+
+.account_info{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+}
+
+.ipt_informations{
+    background-color: #41465A;
+    border: none;
+    margin-left: 50px;
+    color: white;
+    height: 40px;
+    width: 80%;
+    text-indent: 15px;
+    border: #0F1121 solid 2px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.btn_update{
+    background: none;
+    border: #0F1121 solid 2px;
+    border-radius: 8px;
+    width: 300px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.div_btn_update{
+    display: flex;
+    justify-content: center;
+}
