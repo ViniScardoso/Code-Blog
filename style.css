@@ -331,10 +331,18 @@ textarea:focus, input:focus {
     text-align: center;
 }
 
-.sidebar ul li a:hover i{
+.sidebar.active ul li a:hover {
     background-color: #fff;
     color: #393c4b;
 }
+
+.sidebar ul li a:hover i {
+    background-color: #fff;
+    color: #393c4b;
+    transition: all 0.5s ease;
+}
+
+
 
 .sidebar .links_name{
     opacity: 0;
