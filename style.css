@@ -132,7 +132,7 @@ body{
     justify-content: center;
 }
 
-.inputsLogin{
+.sLogin{
     background-color: #41465A;
     width: 100%;
     height: 80%;
@@ -397,6 +397,7 @@ textarea:focus, input:focus {
     text-align: center;
     transition: all 0.4s ease;
     background: #41465A;
+    cursor: pointer;
 }
 
 .sidebar.active .profile #logout{
@@ -411,8 +412,13 @@ textarea:focus, input:focus {
     position: absolute;
     height: 100%;
     left: 85px;
+    display: flex;
     width: calc(100% - 85px);
     transition: all 0.5s ease;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
 }
 
 .home_content .text{
@@ -426,3 +432,22 @@ textarea:focus, input:focus {
     width: calc(100% - 240px);
     left: 270px;
 }
+
+/* Fim Conteúdo Home */
+
+/* Início página perfil */
+
+.update_picture{
+    width: 85%;
+    height: 20%;
+    background-color: #393c4b;
+
+}
+
+.user_information{
+    width: 85%;
+    height: 50%;
+    background-color: #393c4b;
+    margin-top: 5%;
+}
+
