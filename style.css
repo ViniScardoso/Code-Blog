@@ -207,16 +207,30 @@ textarea:focus, input:focus {
     top: 0;
     left: 0;
     height: 100%;
-    width: 240px;
+    width: 60px;
     background-color: #393c4b;
     padding: 6px 14px;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active{
+    width: 240px;
 }
 
 .sidebar .logo_content .logo{
     display: flex;
     height: 50px;
     width: 100%;
+    color: #fff;
     align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo_content .logo{
+    opacity: 1;
+    pointer-events: none;
 }
 
 .sidebar .logo_content .logo img{
@@ -232,7 +246,7 @@ textarea:focus, input:focus {
 .sidebar #btn_menu {
     position: absolute;
     color: #fff;
-    left: 90%;
+    left: 50%;
     top: 6px;
     font-size: 20px;
     height: 50px;
@@ -242,6 +256,173 @@ textarea:focus, input:focus {
     transform: translateX(-50%);
 }
 
+.sidebar.active #btn_menu{
+    left: 90%;
+}
+
 .sidebar ul{
-    margin-top: 20px;
+    margin-top: 20px;   
+}
+
+.sidebar ul li{
+    height: 50px;
+    width: 100%;
+    position: relative;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+}
+
+.sidebar ul li .tooltip {
+    color: black;
+    position: absolute;
+    height: 35px;
+    width: 122px;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    left: 122px;
+    top: 0;  
+    transform: translate(-40%, -50%);
+    border-radius: 6px;
+    line-height: 35px;
+    text-align: center;
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+
+.sidebar ul li:hover .tooltip{
+    top: 52%;
+    transition: all 0.5s ease;
+    opacity: 1;
+} 
+
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.sidebar ul li a:hover{
+    background-color: #fff;
+    color: #393c4b;
+}
+
+.sidebar ul li a i{
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.sidebar .links_name{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .links_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar .profile_content{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.sidebar .profile_content .profile{
+    padding: 10px 6px;
+    height: 70px;
+    position: relative;
+    transition: all 0.4s ease;
+    background: none;
+}
+
+.sidebar.active .profile_content .profile{
+    background: #41465A;
+}
+
+.profile_content .profile .profile_details{
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.sidebar.active .profile .profile_details{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.profile .profile_details img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.profile .profile_details .name_job{
+    margin-left: 10px;
+}
+
+.profile .profile_details .name{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.profile #logout{
+    position: absolute;
+    left: 50%;
+    bottom: 13px;
+    transform: translateX(-50%);
+    min-width: 50px;;
+    line-height: 50px;
+    font-size: 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.4s ease;
+    background: #41465A;
+}
+
+.sidebar.active .profile #logout{
+    left: 88%;
+    background: none;
+}
+
+/* Fim menu lateral*/
+
+/* Conteúdo da home */
+.home_content{
+    position: absolute;
+    height: 100%;
+    left: 85px;
+    width: calc(100% - 85px);
+    transition: all 0.5s ease;
+}
+
+.home_content .text{
+    font-size: 25px;
+    font-weight: 500;
+    color: #fff;
+    margin: 12px;
+}
+
+.sidebar.active ~ .home_content{
+    width: calc(100% - 240px);
+    left: 270px;
 }
