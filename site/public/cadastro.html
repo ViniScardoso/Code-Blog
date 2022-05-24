@@ -63,9 +63,9 @@
             <button class="botaoLogin" onclick="cadastrar()">Cadastrar</button>
             
             <div id="cardErro">
-                <!-- <div id="div_aguardar" class="loading-div">
+                <div id="div_aguardar">
                     <img src="https://c.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" id="loading-gif">
-                </div> -->
+                </div>
                 <h4 id="mensagem_erro"></h4>
             </div>
 
@@ -89,7 +89,7 @@
 
         //Validações dos campos de formulário
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            cardErro.style.display = "block"
+            cardErro.style.display = "flex"
             mensagem_erro.innerHTML = "Por favor, não deixe nenhum campo em branco";
 
             finalizarAguardar();
@@ -139,7 +139,7 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block";
+                cardErro.style.display = "flex";
 
                 mensagem_erro.style.color = "lightgreen";
                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";

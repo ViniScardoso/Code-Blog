@@ -202,7 +202,8 @@ textarea:focus, input:focus {
 
 #cardErro{
     display: none;
-    flex-direction: row;
+    width: 80%;
+    justify-content: center;
 }
 
 #cardErro h4{
@@ -212,10 +213,12 @@ textarea:focus, input:focus {
 
 #loading-gif{
     height: 30px; 
+    margin-top: 55%;
 }
 
-.loading-div{
-    width: fit-content;
+#div_aguardar{
+    display: none; 
+    margin-right: 3%;
 }
 /* Fim Cadastro */
 
