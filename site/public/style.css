@@ -200,6 +200,23 @@ textarea:focus, input:focus {
     flex-direction: column;
 }
 
+#cardErro{
+    display: none;
+    flex-direction: row;
+}
+
+#cardErro h4{
+    font-size: 15px;
+    color: tomato;
+}
+
+#loading-gif{
+    height: 30px; 
+}
+
+.loading-div{
+    width: fit-content;
+}
 /* Fim Cadastro */
 
 /* Tela Home */

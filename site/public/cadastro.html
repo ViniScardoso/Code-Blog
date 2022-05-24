@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/imgs/Logo.png" type="image" href="style.css">
+    <script src="./js/funcoes.js"></script>
+    <title>Code Blog - Login</title>
+</head>
+<body>
+    <div id="conteudo">
+        <div class="headerLogo">
+            <img id="logoLetras" src="assets/imgs/CodeBlog.png" alt="logo codeblog">
+        </div>
+        <div class="card">
+            <h1>Crie uma conta!</h1>
+            
+            
+            <div class="iptLogin">
+                <div class="imgIptLogin">
+                    <img src="assets/imgs/user.png" alt="user">
+                </div>
+                <div class="iptLoginTextos">
+                    <h3>Nome</h3>
+                    <input type="text" id="ipt_nome" class="inputsLogin" placeholder="Coloque o seu nome aqui">
+                </div>
+            </div>
+            
+            <div class="iptLogin">
+                <div class="imgIptLogin">
+                    <img src="assets/imgs/envelope.png" alt="user">
+                </div>
+                <div class="iptLoginTextos">
+                    <h3>Email</h3>
+                    <input type="email" id="ipt_email" class="inputsLogin" placeholder="Coloque o seu email aqui">
+                </div>
+            </div>
+            
+            
+            <div class="iptLogin">
+                <div class="imgIptLogin">
+                    <img src="assets/imgs/cadeado.png" alt="user">
+                </div>
+                <div class="iptLoginTextos">
+                    <h3>Senha</h3>
+                    <input type="password" id="ipt_senha" class="inputsLogin" placeholder="Coloque a sua senha aqui">
+                </div>
+            </div>
+            
+            <div class="iptLogin">
+                <div class="imgIptLogin">
+                    <img src="assets/imgs/cadeado.png" alt="user">
+                </div>
+                <div class="iptLoginTextos">
+                    <h3>Confirmar Senha</h3>
+                    <input type="password" id="ipt_confirmaSenha" class="inputsLogin" placeholder="Confirme a sua senha aqui">
+                </div>
+            </div>
+            
+            
+            <button class="botaoLogin" onclick="cadastrar()">Cadastrar</button>
+            
+            <div id="cardErro">
+                <!-- <div id="div_aguardar" class="loading-div">
+                    <img src="https://c.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" id="loading-gif">
+                </div> -->
+                <h4 id="mensagem_erro"></h4>
+            </div>
+
+           
+
+            
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function cadastrar() {
+        aguardar();
+        
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = ipt_nome.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+        var confirmacaoSenhaVar = ipt_confirmaSenha.value;
+
+        //Validações dos campos de formulário
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Por favor, não deixe nenhum campo em branco";
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (senhaVar != confirmacaoSenhaVar) {
+            cardErro.style.display = "flex"
+            mensagem_erro.innerHTML = "As senhas não coincidem";
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            cardErro.style.display = "flex"
+            mensagem_erro.innerHTML = "Email Inválido ou incompleto";
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.style.color = "lightgreen";
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "index.html";
+                }, "2000")
+                
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
