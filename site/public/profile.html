@@ -141,6 +141,7 @@
         var emailVar = profile_email.value;
         var senhaVar = profile_senha.value;
         var lingVar = profile_lang.value;
+        var idVar = sessionStorage.ID_USUARIO;
         
         fetch("/usuarios/atualizarPerfil", {
             method: "POST",
@@ -153,25 +154,35 @@
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
-                linguagemServer: lingVar
+                linguagemServer: lingVar,
+                idUsuarioServer: idVar,
             })
         }).then(function (resposta) {
 
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "flex";
+                card_erro.style.display = "flex";
                 mensagem_erro.style.color = "white";
                 mensagem_erro.innerHTML = "Alterações realizadas";
-                aguardar();
+                
+                sessionStorage.clear();
+                
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.ID_USUARIO = json.idUsuario;
+                sessionStorage.LINGUAGEM_FAVORITA = json.lingPreferida;
 
                 setTimeout(() => {
-                    window.location = "profile.html";
+                    window.location.reload();
                 }, "2000")
 
                 limparFormulario();
             } else {
                 throw ("Houve um erro ao tentar atualizar as informações!");
+                cardErro.style.display = "flex";
+                mensagem_erro.style.color = "white";
+                mensagem_erro.innerHTML = "Houve um erro ao realizar as informações";
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);

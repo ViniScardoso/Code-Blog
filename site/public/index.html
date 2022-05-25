@@ -123,7 +123,9 @@
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
-
+                div_erros_login.style.display = "block"
+                mensagem_erro.style.color = "tomato";
+                mensagem_erro.innerHTML = "erro";
                 resposta.text().then(texto => {
                     console.error(texto);
                     finalizarAguardar(texto);

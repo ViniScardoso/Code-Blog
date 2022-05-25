@@ -33,7 +33,7 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
+
         usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {
@@ -74,7 +74,7 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        
+
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha)
             .then(
@@ -100,7 +100,7 @@ function atualizarPerfil(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var linguagem = req.body.linguagemServer;
-    var idUsuario = sessionStorage.ID_USUARIO;
+    var idUsuario = req.body.idUsuarioServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -111,31 +111,33 @@ function atualizarPerfil(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else if (linguagem == undefined) {
         res.status(400).send("A linguagem está undefined!");
-    } else {
-        
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.atualizarPerfil(nome, email, senha, linguagem, idUsuario)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar a atualização! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
-}
+    }else if (idUsuario == undefined) {
+            res.status(400).send("O idUsuario está undefined!");
+        } else {
 
-module.exports = {
-    entrar,
-    cadastrar,
-    listar,
-    testar,
-    atualizarPerfil
-}
+            // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+            usuarioModel.atualizarPerfil(nome, email, senha, linguagem, idUsuario)
+                .then(
+                    function (resultado) {
+                        res.json(resultado[0]);
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao realizar a atualização! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage);
+                    }
+                );
+        }
+    }
+
+    module.exports = {
+        entrar,
+        cadastrar,
+        listar,
+        testar,
+        atualizarPerfil
+    }
