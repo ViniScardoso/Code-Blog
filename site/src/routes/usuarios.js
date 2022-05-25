@@ -20,4 +20,9 @@ router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
+router.post("/atualizarPerfil", function (req, res) {
+    usuarioController.atualizarPerfil(req, res);
+});
+
+
 module.exports = router;

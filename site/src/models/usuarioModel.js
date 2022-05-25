@@ -25,14 +25,21 @@ function cadastrar(nome, email, senha) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO usuario (nome, email, senha, lingPreferida ) VALUES ('${nome}', '${email}', '${senha}', 'null');
+        INSERT INTO usuario (nome, email, senha, lingPreferida ) VALUES ('${nome}', '${email}', '${senha}', 'Escolher linguagem');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
+}
+
+function atualizarPerfil(nome, email, senha, linguagem, idUsuario){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarPerfil():", nome, email, senha, linguagem);
+
+    var instrucao = `UPDATE USUARIO SET nome = '${nome}', email = '${email}', senha = '${senha}', lingPref = '${linguagem}' where idUsuario = ${idUsuario};`;
 }
 
 module.exports = {
     entrar,
     cadastrar,
     listar,
+    atualizarPerfil
 };

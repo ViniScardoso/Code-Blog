@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/funcoes.js"></script>
     <link rel="shortcut icon" href="assets/imgs/Logo.png" type="image" href="style.css">
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <title>Code Blog</title>
 </head>
-<body> 
+<body onload="validarSessao()"> 
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
@@ -56,10 +57,10 @@
                 <div class="profile_details">
                     <img src="assets/imgs/Profile.jpg" alt="">
                     <div class="name_job">
-                        <div class="name">Vinicius Cardoso</div>
+                        <div class="name"><span id="b_usuario">Vinicius Cardoso</span></div>
                     </div>
                 </div>
-                <a href="index.html">
+                <a onclick="limparSessao()" a="index.html">
                     <i class='bx bx-log-out' id='logout'></i>
                 </a>
             </div>
@@ -74,8 +75,8 @@
                 <img src="assets/imgs/Profile.jpg" alt="">
                 
                 <div class="change_pictureText">
-                    <h1>Vinicius Cardoso</h1>
-                    <h4>Python</h4>
+                    <h1><span id="titulo_usuario">Vinicius Cardoso</span></h1>
+                    <h4><span id="ling_preferida"></span></h4>
                 </div>
             </div>
 
@@ -94,25 +95,29 @@
             <div style="display: flex;">
                 <div class="account_info">
                     <h4>Nome:</h4>
-                    <input type="text" class="ipt_informations">
+                    <input type="text" class="ipt_informations" id="profile_nome" placeholder="">
     
                     <h4>Senha:</h4>
-                    <input type="text" class="ipt_informations">
+                    <input type="password" class="ipt_informations" placeholder="*******" id="profile_senha">
                 </div>
     
                 <div class="account_info">
                     <h4>Email:</h4>
-                    <input type="text" class="ipt_informations">
+                    <input type="text" class="ipt_informations" placeholder="" id="profile_email">
                     
                     <h4>Linguagem preferida:</h4>
-                    <input type="text" class="ipt_informations">
+                    <input type="text" class="ipt_informations" placeholder="" id="profile_lang">
                     
                 </div>
 
             </div>
 
             <div class="div_btn_update">
-                <button class="btn_update">Atualizar</button>  
+                <button class="btn_update" onclick="atualizar()">Atualizar</button>  
+            </div>
+
+            <div id="card_erro">
+                <h4 id="mensagem_erro"></h4>
             </div>
             
             
@@ -128,4 +133,53 @@
     btn_menu.onclick = function() {
         sidebar.classList.toggle("active");
     }
+</script>
+
+<script>
+    function atualizar() {
+        var nomeVar = profile_nome.value;
+        var emailVar = profile_email.value;
+        var senhaVar = profile_senha.value;
+        var lingVar = profile_lang.value;
+        
+        fetch("/usuarios/atualizarPerfil", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                linguagemServer: lingVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "flex";
+                mensagem_erro.style.color = "white";
+                mensagem_erro.innerHTML = "Alterações realizadas";
+                aguardar();
+
+                setTimeout(() => {
+                    window.location = "profile.html";
+                }, "2000")
+
+                limparFormulario();
+            } else {
+                throw ("Houve um erro ao tentar atualizar as informações!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    
 </script>

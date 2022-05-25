@@ -16,18 +16,18 @@
         </div>
         <div class="card">
             <h1>Crie uma conta!</h1>
-            
-            
+
+
             <div class="iptLogin">
                 <div class="imgIptLogin">
                     <img src="assets/imgs/user.png" alt="user">
                 </div>
                 <div class="iptLoginTextos">
-                    <h3>Nome</h3>
+                    <h3>Nome e Sobrenome</h3>
                     <input type="text" id="ipt_nome" class="inputsLogin" placeholder="Coloque o seu nome aqui">
                 </div>
             </div>
-            
+
             <div class="iptLogin">
                 <div class="imgIptLogin">
                     <img src="assets/imgs/envelope.png" alt="user">
@@ -37,8 +37,8 @@
                     <input type="email" id="ipt_email" class="inputsLogin" placeholder="Coloque o seu email aqui">
                 </div>
             </div>
-            
-            
+
+
             <div class="iptLogin">
                 <div class="imgIptLogin">
                     <img src="assets/imgs/cadeado.png" alt="user">
@@ -48,7 +48,7 @@
                     <input type="password" id="ipt_senha" class="inputsLogin" placeholder="Coloque a sua senha aqui">
                 </div>
             </div>
-            
+
             <div class="iptLogin">
                 <div class="imgIptLogin">
                     <img src="assets/imgs/cadeado.png" alt="user">
@@ -58,28 +58,21 @@
                     <input type="password" id="ipt_confirmaSenha" class="inputsLogin" placeholder="Confirme a sua senha aqui">
                 </div>
             </div>
-            
-            
+
+
             <button class="botaoLogin" onclick="cadastrar()">Cadastrar</button>
-            
+
             <div id="cardErro">
-                <div id="div_aguardar">
-                    <img src="https://c.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" id="loading-gif">
-                </div>
                 <h4 id="mensagem_erro"></h4>
             </div>
 
-           
-
-            
         </div>
     </div>
 </body>
 </html>
 <script>
     function cadastrar() {
-        aguardar();
-        
+
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
         var nomeVar = ipt_nome.value;
@@ -140,16 +133,15 @@
 
             if (resposta.ok) {
                 cardErro.style.display = "flex";
-
                 mensagem_erro.style.color = "lightgreen";
                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                aguardar();
 
                 setTimeout(() => {
                     window.location = "index.html";
                 }, "2000")
-                
+
                 limparFormulario();
-                finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
@@ -162,7 +154,7 @@
     }
 
     function sumirMensagem() {
-        cardErro.style.display = "none"
+        cardErro.style.display = "none";
     }
 
 </script>

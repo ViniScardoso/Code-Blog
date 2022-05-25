@@ -178,6 +178,15 @@ textarea:focus, input:focus {
     font-weight: bolder;
     cursor: pointer;
 }
+
+#div_erros_login{
+    display: none;
+}
+
+#div_erros_login h4{
+    font-size: 15px;
+    color: tomato;
+}
 /* fim login */
 
 /* Início Cadastro */
@@ -204,6 +213,7 @@ textarea:focus, input:focus {
     display: none;
     width: 80%;
     justify-content: center;
+    align-items: center;
 }
 
 #cardErro h4{
@@ -211,15 +221,6 @@ textarea:focus, input:focus {
     color: tomato;
 }
 
-#loading-gif{
-    height: 30px; 
-    margin-top: 55%;
-}
-
-#div_aguardar{
-    display: none; 
-    margin-right: 3%;
-}
 /* Fim Cadastro */
 
 /* Tela Home */
@@ -572,6 +573,10 @@ textarea:focus, input:focus {
     border: #0F1121 solid 2px;
     border-radius: 8px;
     margin-bottom: 25px;
+}
+
+.ipt_informations::placeholder{
+    color: rgb(185, 184, 184);
 }
 
 .btn_update{
