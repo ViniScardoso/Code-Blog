@@ -125,7 +125,7 @@
                 console.log("Houve um erro ao tentar realizar o login!");
                 div_erros_login.style.display = "block"
                 mensagem_erro.style.color = "tomato";
-                mensagem_erro.innerHTML = "erro";
+                mensagem_erro.innerHTML = "Email ou senha inválidos ";
                 resposta.text().then(texto => {
                     console.error(texto);
                     finalizarAguardar(texto);

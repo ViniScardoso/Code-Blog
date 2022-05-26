@@ -168,16 +168,23 @@
                 
                 sessionStorage.clear();
                 
-                sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.idUsuario;
-                sessionStorage.LINGUAGEM_FAVORITA = json.lingPreferida;
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
 
-                setTimeout(() => {
-                    window.location.reload();
-                }, "2000")
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.LINGUAGEM_FAVORITA = json.lingPreferida;
+
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 2000); 
+
+                });
 
                 limparFormulario();
+                
             } else {
                 throw ("Houve um erro ao tentar atualizar as informações!");
                 cardErro.style.display = "flex";

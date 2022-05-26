@@ -28,3 +28,4 @@ create table Resposta(
   fkPost int,
   foreign key(fkPost) references Post(idPost)
 );
+

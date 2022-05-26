@@ -113,7 +113,7 @@ function atualizarPerfil(req, res) {
         res.status(400).send("A linguagem está undefined!");
     }else if (idUsuario == undefined) {
             res.status(400).send("O idUsuario está undefined!");
-        } else {
+    } else {
 
             // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
             usuarioModel.atualizarPerfil(nome, email, senha, linguagem, idUsuario)
