@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="assets/imgs/Logo.png" type="image" href="style.css">
     <script src="./js/funcoes.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>   
     <title>Code Blog - Login</title>
 </head>
 <body>
@@ -135,13 +136,11 @@
                 cardErro.style.display = "flex";
                 mensagem_erro.style.color = "lightgreen";
                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-                aguardar();
 
                 setTimeout(() => {
                     window.location = "index.html";
                 }, "2000")
 
-                limparFormulario();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }

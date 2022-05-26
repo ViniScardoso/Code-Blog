@@ -119,7 +119,7 @@ function atualizarPerfil(req, res) {
             usuarioModel.atualizarPerfil(nome, email, senha, linguagem, idUsuario)
                 .then(
                     function (resultado) {
-                        res.json(resultado[0]);
+                        res.json(resultado);
                     }
                 ).catch(
                     function (erro) {

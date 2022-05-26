@@ -9,9 +9,11 @@
     <link rel="shortcut icon" href="assets/imgs/Logo.png" type="image" href="style.css">
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Code Blog</title>
 </head>
-<body onload="validarSessao()"> 
+
+<body onload="validarSessao()">
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
@@ -69,11 +71,11 @@
     <!-- Page content begining  -->
     <div class="home_content">
         <div class="update_picture">
-                
-            
+
+
             <div style="display: flex">
                 <img src="assets/imgs/Profile.jpg" alt="">
-                
+
                 <div class="change_pictureText">
                     <h1><span id="titulo_usuario">Vinicius Cardoso</span></h1>
                     <h4><span id="ling_preferida"></span></h4>
@@ -87,7 +89,7 @@
                 </label>
             </div>
 
-                
+
         </div>
         <div class="user_information">
             <h1>Informações do Usuário</h1>
@@ -96,31 +98,26 @@
                 <div class="account_info">
                     <h4>Nome:</h4>
                     <input type="text" class="ipt_informations" id="profile_nome" placeholder="">
-    
+
                     <h4>Senha:</h4>
                     <input type="password" class="ipt_informations" placeholder="*******" id="profile_senha">
                 </div>
-    
+
                 <div class="account_info">
                     <h4>Email:</h4>
                     <input type="text" class="ipt_informations" placeholder="" id="profile_email">
-                    
+
                     <h4>Linguagem preferida:</h4>
                     <input type="text" class="ipt_informations" placeholder="" id="profile_lang">
-                    
+
                 </div>
 
             </div>
 
             <div class="div_btn_update">
-                <button class="btn_update" onclick="atualizar()">Atualizar</button>  
+                <button class="btn_update" onclick="alerta()">Atualizar</button>
             </div>
 
-            <div id="card_erro">
-                <h4 id="mensagem_erro"></h4>
-            </div>
-            
-            
         </div>
     </div>
 </body>
@@ -130,74 +127,165 @@
     let btn_menu = document.querySelector("#btn_menu");
     let sidebar = document.querySelector(".sidebar");
 
-    btn_menu.onclick = function() {
+    btn_menu.onclick = function () {
         sidebar.classList.toggle("active");
     }
 </script>
 
 <script>
+    function alerta() {
+        Swal.fire({
+            background: '#0F1121',
+            color: '#FFF',
+            title: 'Você tem certeza?',
+            text: "As informações do seu perfil serão atualizadas!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Sim, mude minhas informações!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                atualizar();
+            }
+        })
+
+    }
+
     function atualizar() {
+
         var nomeVar = profile_nome.value;
         var emailVar = profile_email.value;
         var senhaVar = profile_senha.value;
         var lingVar = profile_lang.value;
         var idVar = sessionStorage.ID_USUARIO;
-        
-        fetch("/usuarios/atualizarPerfil", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar,
-                linguagemServer: lingVar,
-                idUsuarioServer: idVar,
-            })
-        }).then(function (resposta) {
 
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                card_erro.style.display = "flex";
-                mensagem_erro.style.color = "white";
-                mensagem_erro.innerHTML = "Alterações realizadas";
-                
-                sessionStorage.clear();
-                
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.LINGUAGEM_FAVORITA = json.lingPreferida;
-
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 2000); 
-
-                });
-
-                limparFormulario();
-                
-            } else {
-                throw ("Houve um erro ao tentar atualizar as informações!");
-                cardErro.style.display = "flex";
-                mensagem_erro.style.color = "white";
-                mensagem_erro.innerHTML = "Houve um erro ao realizar as informações";
+        if (nomeVar == "" && emailVar == "" && senhaVar == "" && lingVar == "") {
+            Swal.fire(
+                'Não deixe nenhum campo vazio',
+                'info'
+            )
+        }
+        else {
+            
+            if (nomeVar == "" && emailVar == "" && senhaVar == "" && lingVar != "") { // apenas linguagem preenchida
+                nomeVar = sessionStorage.NOME_USUARIO;
+                emailVar = sessionStorage.EMAIL_USUARIO;
+                senhaVar = sessionStorage.SENHA_USUARIO;
             }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
+            else if(nomeVar == "" && emailVar == "" && senhaVar != "" && lingVar == "" ) { // apenas senha preenchida
+                nomeVar = sessionStorage.NOME_USUARIO;
+                emailVar = sessionStorage.EMAIL_USUARIO;
+                lingVar = sessionStorage.LINGUAGEM_FAVORITA;
+            }
+            else if (nomeVar == "" && emailVar != "" && senhaVar == "" && lingVar == "" ) { // apenas email preenchido
+                nomeVar = sessionStorage.NOME_USUARIO;
+                lingVar = sessionStorage.LINGUAGEM_FAVORITA;
+                senhaVar = sessionStorage.SENHA_USUARIO;
+            }
+            else if (nomeVar != "" && emailVar == "" && senhaVar == "" && lingVar == "" ) { // apenas nome preenchido
+                emailVar = sessionStorage.EMAIL_USUARIO;
+                lingVar = sessionStorage.LINGUAGEM_FAVORITA;
+                senhaVar = sessionStorage.SENHA_USUARIO;
+            }
+            else if (nomeVar != "" && emailVar != "" && senhaVar == "" && lingVar == "" ) { // nome e email preenchidos
+                lingVar = sessionStorage.LINGUAGEM_FAVORITA;
+                senhaVar = sessionStorage.SENHA_USUARIO;
+            }
+            else if (nomeVar != "" && emailVar == "" && senhaVar != "" && lingVar == "" ) { // nome e senha preenchidos
+                lingVar = sessionStorage.LINGUAGEM_FAVORITA;
+                emailVar = sessionStorage.EMAIL_USUARIO;
+            }
+            else if(nomeVar != "" && emailVar == "" && senhaVar == "" && lingVar != ""){ // nome e linguagem preenchidos
+                emailVar = sessionStorage.EMAIL_USUARIO;
+                senhaVar = sessionStorage.SENHA_USUARIO;
+            }
+            else if(nomeVar == "" && emailVar != "" && senhaVar != "" && lingVar == ""){ // email e senha preenchidos
+                nomeVar = sessionStorage.NOME_USUARIO;
+                lingVar = sessionStorage.LINGUAGEM_FAVORITA;
+            }
+            else if(nomeVar == "" && emailVar != "" && senhaVar == "" && lingVar != ""){ // email e linguagem preenchidos
+                nomeVar = sessionStorage.NOME_USUARIO;
+                senhaVar = sessionStorage.SENHA_USUARIO;
+            }
+            else if (nomeVar == "" && emailVar == "" && senhaVar != "" && lingVar != "") { // senha e linguagem preenchidos
+                nomeVar = sessionStorage.NOME_USUARIO;
+                emailVar = sessionStorage.EMAIL_USUARIO;
+            }
+            else if (nomeVar != "" && emailVar != "" && senhaVar != "" && lingVar == "") { // apenas linguagem não preenchida
+                lingVar = sessionStorage.LINGUAGEM_FAVORITA;
+            }
+            else if (nomeVar != "" && emailVar != "" && senhaVar == "" && lingVar != "") { // apenas senha não preenchida
+                senhaVar = sessionStorage.SENHA_USUARIO;
+            }
+            else if (nomeVar != "" && emailVar != "" && senhaVar == "" && lingVar != "") { // apenas email mão preenchido
+                emailVar.sessionStorage.EMAIL_USUARIO;
+            }
+            else if(nomeVar == "" && emailVar != "" && senhaVar != "" && lingVar != ""){ // apenas nome não preenchido
+                nomeVar = sessionStorage.NOME_USUARIO;
+            }
+
+            fetch("/usuarios/atualizarPerfil", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar,
+                    linguagemServer: lingVar,
+                    idUsuarioServer: idVar,
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        background: '#0F1121',
+                        color: '#FFF',
+                        title: 'Mudanças Feitas!',
+                        text: 'Seu perfil foi alterado.',
+                        confirmButtonText: 'Ok',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            sessionStorage.clear();
+
+                            sessionStorage.ID_USUARIO = idVar;
+                            sessionStorage.EMAIL_USUARIO = emailVar;
+                            sessionStorage.NOME_USUARIO = nomeVar;
+                            sessionStorage.LINGUAGEM_FAVORITA = lingVar;
+
+
+                            window.location.reload();
+
+                        }
+                    })
+
+
+                } else {
+                    throw ("Houve um erro ao tentar atualizar as informações!");
+                    Swal.fire({
+                        background: '#0F1121',
+                        color: '#FFF',
+                        icon: 'error',
+                        title: 'Erro',
+                        text: 'Houve um erro ao tentar atualizar as informações!',
+                    })
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
+        }
 
         return false;
     }
 
-    
+
 </script>
