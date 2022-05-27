@@ -12,7 +12,7 @@
     <title>Code Blog</title>
 </head>
 
-<body onload="validarSessao()">
+<body onload="mudaFoto(), validarSessao()">
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
@@ -56,12 +56,12 @@
         <div class="profile_content">
             <div class="profile">
                 <div class="profile_details">
-                    <img id="profile_img" src="../assets/imgPerfil/user.png" alt="">
+                    <img id="fotoPerfil" src="" alt="">
                     <div class="name_job">
                         <div class="name"><span id="b_usuario">Usuário</span></div>
                     </div>
                 </div>
-                <a onclick="limparSessao()" a="index.html">
+                <a onclick="limparSessao()">
                     <i class='bx bx-log-out' id='logout'></i>
                 </a>
             </div>
@@ -82,5 +82,10 @@
 
     btn_menu.onclick = function() {
         sidebar.classList.toggle("active");
+    }
+
+
+    function mudaFoto(){
+        fotoPerfil.src = sessionStorage.IMAGEM_USUARIO;
     }
 </script>

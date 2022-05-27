@@ -1,4 +1,3 @@
-drop database CodeBlog;
 create database CodeBlog;
 use CodeBlog;
 

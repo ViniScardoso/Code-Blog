@@ -540,6 +540,9 @@ textarea:focus, input:focus {
     position: relative;
     z-index: 1;
     box-shadow: 5px 10px 18px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .user_information h1{
@@ -547,6 +550,7 @@ textarea:focus, input:focus {
     font-weight: lighter;
     font-size: 30px;
     margin-left: 50px;
+    margin-top: 0;
 }
 
 .user_information h4{

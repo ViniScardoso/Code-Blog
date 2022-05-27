@@ -37,7 +37,7 @@ router.post("/atualizarPerfil", function (req, res) {
 });
 
 router.post("/upload", upload.single("uploadImg"),function (req, res) {
-    res.send(alert('arquivo recebido'));
+    res.send("Arquivo recebido");
 });
 
 
