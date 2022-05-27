@@ -1,7 +1,19 @@
 var express = require("express");
 var router = express.Router();
-
 var usuarioController = require("../controllers/usuarioController");
+var multer = require("multer");
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb){
+        cb(null, "site/public/assets/imgPerfil")
+    },
+    filename: function (req, file, cb){
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({storage})
 
 router.get("/", function (req, res) {
     usuarioController.testar(req, res);
@@ -22,6 +34,10 @@ router.post("/autenticar", function (req, res) {
 
 router.post("/atualizarPerfil", function (req, res) {
     usuarioController.atualizarPerfil(req, res);
+});
+
+router.post("/upload", upload.single("uploadImg"),function (req, res) {
+    res.send(alert('arquivo recebido'));
 });
 
 

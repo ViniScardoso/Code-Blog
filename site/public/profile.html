@@ -57,7 +57,7 @@
         <div class="profile_content">
             <div class="profile">
                 <div class="profile_details">
-                    <img src="assets/imgs/Profile.jpg" alt="">
+                    <img id="mini_profile_img" src="" alt="">
                     <div class="name_job">
                         <div class="name"><span id="b_usuario">Vinicius Cardoso</span></div>
                     </div>
@@ -74,7 +74,7 @@
 
 
             <div style="display: flex">
-                <img src="assets/imgs/Profile.jpg" alt="">
+                <img id="profile_img" src="" alt="">
 
                 <div class="change_pictureText">
                     <h1><span id="titulo_usuario">Vinicius Cardoso</span></h1>
@@ -83,10 +83,13 @@
             </div>
 
             <div>
-                <label for="ipt_profileImg" class="upload_img">
-                    <input type="file" name="" id="ipt_profileImg">
-                    Upload
-                </label>
+                <form method="post" enctype="multipart/form-data" action="/usuarios/upload">  
+                    <label for="ipt_profileImg" class="upload_img">
+                        <input type="file" name="uploadImg" id="ipt_profileImg" accept="image/png, image/jpg, img/jpeg">
+                        Escolher imagem
+                    </label>
+                    <!-- <input type="submit" value="Realizar upload"> -->
+                </form>
             </div>
 
 
@@ -160,12 +163,15 @@
         var senhaVar = profile_senha.value;
         var lingVar = profile_lang.value;
         var idVar = sessionStorage.ID_USUARIO;
+        var userImg = sessionStorage.IMAGEM_USUARIO;
 
         if (nomeVar == "" && emailVar == "" && senhaVar == "" && lingVar == "") {
-            Swal.fire(
-                'Não deixe nenhum campo vazio',
-                'info'
-            )
+            Swal.fire({
+                text:'Não deixe nenhum campo vazio',
+                icon:'info',
+                background: '#0F1121',
+                color: '#FFF',
+            })
         }
         else {
             
@@ -261,6 +267,7 @@
                             sessionStorage.NOME_USUARIO = nomeVar;
                             sessionStorage.LINGUAGEM_FAVORITA = lingVar;
                             sessionStorage.SENHA_USUARIO = senhaVar;
+                            sessionStorage.IMAGEM_USUARIO = userImg;
 
 
                             window.location.reload();

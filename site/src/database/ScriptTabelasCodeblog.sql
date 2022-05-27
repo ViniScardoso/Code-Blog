@@ -7,7 +7,8 @@ create table Usuario(
   nome varchar(45),
   email varchar(45),
   senha varchar(45),
-  lingPreferida varchar(45)
+  lingPreferida varchar(45),
+  imgPerfil varchar(50)
 )auto_increment = 1001;
 
 
