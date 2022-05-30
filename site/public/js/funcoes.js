@@ -31,10 +31,6 @@ function validarSessao() {
     }
 }
 
-function mudaFoto(){
-    
-}
-
 function limparSessao() {
     // aguardar();
     sessionStorage.clear();

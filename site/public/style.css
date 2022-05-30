@@ -24,11 +24,18 @@ button{
 
 a{
     color: #fff;
+    text-decoration: none;
 }
 
 input{
     font-family: 'Poppins';
 }
+
+textarea{
+    font-family: 'Poppins';
+}
+
+
 
 /* fim do geral */
 
@@ -596,3 +603,80 @@ textarea:focus, input:focus {
     display: flex;
     justify-content: center;
 }
+
+/* Fim página perfil */
+
+/* Início fórum */
+
+.tituloForum{
+    width: 70%;
+    display: flex;
+    text-align: center;
+}
+
+.tituloForum h1{
+    font-size: 25px;
+}
+
+.Foruns{
+    width: 70%;
+    height: 70%;
+    padding: 1%;
+    display: flex;
+}
+
+.forum{
+    height: 40%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    align-items: center;
+    background-color: #393c4b;
+    box-shadow: 5px 10px 18px black;
+}
+
+.forum img{
+    height: 100px;
+    width: 100%;
+}
+
+.forum h2{
+    margin: 0;
+}
+
+.metade1{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.metade2{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.titulo_forum{
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+
+.btn_forum{
+    background: none;
+    border: #0F1121 solid 2px;
+    border-radius: 8px;
+    width: 70%;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+/* Fim forum */

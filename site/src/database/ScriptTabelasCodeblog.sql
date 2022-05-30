@@ -16,10 +16,9 @@ create table Post(
   titulo varchar(45),
   descricao varchar(600),
   linguagem varchar(45),
-  dataPost datetime,
   fkUsuario int,
   foreign key(fkUsuario) references Usuario(idUsuario)
-  )auto_increment = 10001;
+)auto_increment = 10001;
   
   
 create table Resposta(

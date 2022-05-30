@@ -5,8 +5,8 @@ function testar(req, res) {
     res.send("ENTRAMOS NO AVISO CONTROLLER");
 }
 
-function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+function listarJs(req, res) {
+    avisoModel.listarJs().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -65,7 +65,7 @@ function pesquisarDescricao(req, res) {
         );
 }
 
-function publicar(req, res) {
+function publicarJs(req, res) {
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
     var idUsuario = req.params.idUsuario;
@@ -77,7 +77,7 @@ function publicar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+        avisoModel.publicarJs(titulo, descricao, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -133,10 +133,10 @@ function deletar(req, res) {
 
 module.exports = {
     testar,
-    listar,
+    listarJs,
     listarPorUsuario,
     pesquisarDescricao,
-    publicar,
+    publicarJs,
     editar,
     deletar
 }

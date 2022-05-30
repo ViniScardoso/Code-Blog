@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body{
+    margin: 0;
+    font-family: 'Poppins';
+    color: white;
+    background-color: #0F1121;
+    max-width: 100vw;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+button{
+    font-family: 'Poppins';
+}
+
+input{
+    font-family: 'Poppins';
+}
+
+textarea{
+    font-family: 'Poppins';
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header{
+    width: 90%;
+    display: flex;
+    margin-left: 7%;
+    margin-top: 1%;
+    justify-content: space-between
+}
+
+.header h1{
+    margin: 0;
+}
+
+.header a{
+    margin-top: 1.4%;
+    margin-right: 8%;
+}
+
+.post{
+    background-color: #393c4b;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.div_form{
+    width: 80%;
+}
+
+.div_form label{
+    width: 100%;
+}
+
+.div_form input {
+    width: 100%;
+    border-radius: 5px;
+    border: 3px solid #0F1121;
+}
+
+.div_form textarea {
+    width: 100%;
+    border: 3px solid #0F1121;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.div_form button {
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px 15px;
+    color: white;
+    background-color: #473E57;
+    border: 2px solid #0F1121;
+}
+
+.div-results {
+    width: 80%;
+}
+
+.div-results .feed-container {
+    background-color: #393c4b;
+    border-radius: 5px;
+    margin-bottom: 80px;
+}
+
+.div-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.div-buttons > * {
+    margin-left: 30px;
+}
+
+.publicacao{
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    border-bottom: 50px solid #0F1121;
+}
+
+.publicacao h2{
+    margin: 0;
+    width: fit-content;
+}
+
+.publicacao h3{
+    margin: 0;
+    width: fit-content;
+}
+
+.publicacao h4{
+    margin: 0;
+    width: fit-content;
+}
+
+.publicacao span{
+    display: flex;
+}
+
+.publicacao .textoPosts{
+    font-size: 14px;
+    margin-top: 3px;
+    margin-left: 3px;
+}
+
+.publicacao button{
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 15px;
+    color: white;
+    background-color: #473E57;
+    border: 1px solid #0F1121;
+}
