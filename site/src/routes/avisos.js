@@ -47,11 +47,11 @@ router.post("/publicarCmais/:idUsuario", function (req, res) {
     avisoController.publicarCmais(req, res);
 });
 
-router.put("/editar/:idAviso", function (req, res) {
+router.put("/editar/:idPost", function (req, res) {
     avisoController.editar(req, res);
 });
 
-router.delete("/deletar/:idAviso", function (req, res) {
+router.delete("/deletar/:idPost", function (req, res) {
     avisoController.deletar(req, res);
 });
 
