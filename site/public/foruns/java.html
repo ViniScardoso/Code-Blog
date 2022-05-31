@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/funcoes.js"></script>
+    <link rel="shortcut icon" href="../assets/imgs/Logo.png" type="image" href="style.css">
+    <link rel="stylesheet" href="styleforuns.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Code Blog</title>
+</head>
+
+<body onload="atualizarFeed(), validarSessao()">
+    <div class="content">
+        <div class="header">
+            <div style="display: inherit;">
+                <i class='bx bxl-java bx-lg'></i>
+                <h1>Java</h1>
+            </div>
+
+            <a href="../forum.html">Sair do Fórum</a>
+        </div>
+
+        <div class="post">
+            <h2>Poste aqui sua dúvida</h2>
+            <div class="div_form">
+                <form id="form_postagem" method="post" onsubmit="return alerta()">
+                    <label>
+                        Título:
+                        <br>
+                        <input name="titulo" id="titulo" maxlength="100" type="text">
+                    </label>
+                    <br><br>
+                    <label>
+                        Descrição:
+                        <br>
+                        <textarea name="descricao" id="textarea_descricao" maxlength="2000" rows="6"></textarea>
+                    </label>
+                    <br><br>
+                    <button>Enviar</button>
+                    <br><br>
+                </form>
+            </div>
+        </div>
+
+        <div class="div-results">
+            <h2>Posts</h2>
+            <div id="feed_container" class="feed-container">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    function limparFormulario() {
+        document.getElementById("form_postagem").reset();
+    }
+
+    function alerta() {
+        Swal.fire({
+            background: '#0F1121',
+            color: '#FFF',
+            title: 'Você tem certeza?',
+            text: "Você quer realizar esse post",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Não',
+            confirmButtonText: 'Sim',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                return publicar();
+            }
+        })
+
+        return false;
+    }
+
+    function publicar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            titulo: form_postagem.titulo.value,
+            descricao: form_postagem.descricao.value
+        }
+
+        if(corpo.titulo == '' || corpo.descricao == '') {
+            Swal.fire({
+                text:'Não deixe nenhum campo vazio',
+                icon:'info',
+                background: '#0F1121',
+                color: '#FFF',
+            })
+        }
+        else{
+            fetch(`/avisos/publicarJava/${idUsuario}`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(corpo)
+            }).then(function (resposta) {
+    
+                console.log("resposta: ", resposta);
+    
+                if (resposta.ok) {
+    
+                    Swal.fire({
+                        icon: 'success',
+                        background: '#0F1121',
+                        color: '#FFF',
+                        title: 'Post publicado!',
+                        text: 'Seu Post foi publicado com sucesso',
+                        confirmButtonText: 'Ok',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                            limparFormulario();
+                        }
+                    })
+    
+    
+                } else if (resposta.status == 404) {
+                    window.alert("Deu 404!");
+                } else {
+                    throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                    Swal.fire({
+                        background: '#0F1121',
+                        color: '#FFF',
+                        icon: 'error',
+                        title: 'Erro',
+                        text: 'Houve um erro ao tentar realizar um post!',
+                    })
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+
+        return false;
+
+    }
+
+    function editar(idAviso) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
+        console.log("cliquei em editar - " + idAviso);
+        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
+        window.location = "/dashboard/edicao-aviso.html"
+
+    }
+
+    function deletar(idAviso) {
+        console.log("Criar função de apagar post escolhido - ID" + idAviso);
+        fetch(`/avisos/deletar/${idAviso}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/dashboard/mural.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function atualizarFeed() {
+        //aguardar();
+        fetch("/avisos/listarJava").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum post foi feito ainda, seja você o primeiro :)"
+                    feed.appendChild(mensagem);
+                    throw "Nenhum post foi feito ainda, seja você o primeiro :)";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divPublicacao = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanTitulo = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var divDescricao = document.createElement("div");
+                        var divButtons = document.createElement("div");
+                        var btnEditar = document.createElement("button");
+                        var btnDeletar = document.createElement("button");
+
+
+                        // spanID.innerHTML = '<h3>ID:</h3> <span class="textoPosts">' + publicacao.idAviso + '</span>' ;
+                        spanTitulo.innerHTML = '<h2>' + publicacao.titulo + '</h2>';
+                        spanNome.innerHTML = '<h4>Usuário:</h4> <span class="textoPosts">' + publicacao.nome + '</span>';
+                        divDescricao.innerHTML = '<h4>Descrição:</h4> <span class="textoPosts">' + publicacao.descricao + '</span>';
+                        btnEditar.innerHTML = '<h4>Editar</h4>';
+                        btnDeletar.innerHTML = '<h4>Deletar</h4>';
+
+                        divPublicacao.className = "publicacao";
+                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        spanNome.className = "publicacao-nome";
+                        spanTitulo.className = "publicacao-titulo";
+                        divDescricao.className = "publicacao-descricao";
+
+                        divButtons.className = "div-buttons"
+
+                        btnEditar.className = "publicacao-btn-editar"
+                        btnEditar.id = "btnEditar" + publicacao.idAviso;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+
+                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                        divPublicacao.appendChild(spanID);
+                        divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(spanNome);
+                        divPublicacao.appendChild(divDescricao);
+                        divPublicacao.appendChild(divButtons);
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function testar() {
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_postagem")));
+
+        var divResultado = document.getElementById("div_feed");
+
+        divResultado.appendChild(document.createTextNode(formulario.get("descricao")));
+        divResultado.innerHTML = formulario.get("descricao");
+
+
+        return false;
+    }
+</script>

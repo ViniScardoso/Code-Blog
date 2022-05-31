@@ -19,6 +19,48 @@ function listarJs(req, res) {
     });
 }
 
+function listarPy(req, res) {
+    avisoModel.listarPy().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarJava(req, res) {
+    avisoModel.listarJava().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarCmais(req, res) {
+    avisoModel.listarCmais().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
@@ -93,6 +135,91 @@ function publicarJs(req, res) {
     }
 }
 
+function publicarPy(req, res) {
+    var titulo = req.body.titulo;
+    var descricao = req.body.descricao;
+    var idUsuario = req.params.idUsuario;
+
+    if (titulo == undefined) {
+        res.status(400).send("O título está indefinido!");
+    } else if (descricao == undefined) {
+        res.status(400).send("A descrição está indefinido!");
+    } else if (idUsuario == undefined) {
+        res.status(403).send("O id do usuário está indefinido!");
+    } else {
+        avisoModel.publicarPy(titulo, descricao, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function publicarJava(req, res) {
+    var titulo = req.body.titulo;
+    var descricao = req.body.descricao;
+    var idUsuario = req.params.idUsuario;
+
+    if (titulo == undefined) {
+        res.status(400).send("O título está indefinido!");
+    } else if (descricao == undefined) {
+        res.status(400).send("A descrição está indefinido!");
+    } else if (idUsuario == undefined) {
+        res.status(403).send("O id do usuário está indefinido!");
+    } else {
+        avisoModel.publicarJava(titulo, descricao, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function publicarCmais(req, res) {
+    var titulo = req.body.titulo;
+    var descricao = req.body.descricao;
+    var idUsuario = req.params.idUsuario;
+
+    if (titulo == undefined) {
+        res.status(400).send("O título está indefinido!");
+    } else if (descricao == undefined) {
+        res.status(400).send("A descrição está indefinido!");
+    } else if (idUsuario == undefined) {
+        res.status(403).send("O id do usuário está indefinido!");
+    } else {
+        avisoModel.publicarCmais(titulo, descricao, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
     var idAviso = req.params.idAviso;
@@ -134,9 +261,15 @@ function deletar(req, res) {
 module.exports = {
     testar,
     listarJs,
+    listarPy,
+    listarJava,
+    listarCmais,
     listarPorUsuario,
     pesquisarDescricao,
     publicarJs,
+    publicarPy,
+    publicarJava,
+    publicarCmais,
     editar,
     deletar
 }
