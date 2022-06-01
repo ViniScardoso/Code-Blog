@@ -47,6 +47,10 @@ router.post("/publicarCmais/:idUsuario", function (req, res) {
     avisoController.publicarCmais(req, res);
 });
 
+router.post("/publicarResposta/:idPost", function (req, res) {
+    avisoController.publicarResposta(req, res);
+});
+
 router.put("/editar/:idPost", function (req, res) {
     avisoController.editar(req, res);
 });

@@ -25,6 +25,8 @@ create table Resposta(
   idResposta int primary key auto_increment,
   descricao varchar(600),
   fkPost int,
-  foreign key(fkPost) references Post(idPost)
+  fkUsuario int,
+  foreign key(fkPost) references Post(idPost),
+  foreign key(fkUsuario) references Usuario(idUsuario)
 );
 

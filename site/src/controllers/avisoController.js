@@ -219,6 +219,30 @@ function publicarCmais(req, res) {
     }
 }
 
+function publicarResposta(req, res) {
+
+    var descricao = req.body.conteudo;
+    var idPost = req.body.idPost;
+
+    if (descricao == undefined) {
+        res.status(400).send("A descricao está indefinida!");
+    } else {
+        avisoModel.publicarResposta(descricao, idPost)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
@@ -270,6 +294,7 @@ module.exports = {
     publicarPy,
     publicarJava,
     publicarCmais,
+    publicarResposta,
     editar,
     deletar
 }

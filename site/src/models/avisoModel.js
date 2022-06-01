@@ -158,6 +158,15 @@ function publicarCmais(titulo, descricao, idUsuario) {
     return database.executar(instrucao);
 }
 
+function publicarResposta(descricao, idPost) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", descricao, idPost);
+    var instrucao = `
+        INSERT INTO resposta (descricao, fkPost) VALUES ('${descricao}', '${idPost}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function editar(novaDescricao, idPost) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, idPost);
     var instrucao = `
@@ -186,6 +195,7 @@ module.exports = {
     publicarJs,
     publicarPy,
     publicarJava,
+    publicarResposta,
     publicarCmais,
     editar,
     deletar

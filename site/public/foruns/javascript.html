@@ -56,7 +56,7 @@
 
 </html>
 <script>
-
+    
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
@@ -81,8 +81,9 @@
         return false;
     }
 
+
     function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
+        var idUsuario = sessionStorage.ID_USUARIO;  
 
         var corpo = {
             titulo: form_postagem.titulo.value,
@@ -145,6 +146,70 @@
         return false;
 
     }
+
+
+    function publicarResposta() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var conteudo = txtarea_resposta_post.value;
+
+        if (conteudo == '' || conteudo == '') {
+            Swal.fire({
+                text: 'Não é possível publicar uma resposta vazia',
+                icon: 'info',
+                background: '#0F1121',
+                color: '#FFF',
+            })
+        }
+        else {
+            fetch(`/avisos/publicarResposta/${idPost}`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(conteudo)
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    Swal.fire({
+                        icon: 'success',
+                        background: '#0F1121',
+                        color: '#FFF',
+                        title: 'Resposta publicada!',
+                        text: 'Resposta publicada com sucesso',
+                        confirmButtonText: 'Ok',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                            txtarea_resposta_post.value = "";
+                        }
+                    })
+
+
+                } else if (resposta.status == 404) {
+                    window.alert("Deu 404!");
+                } else {
+                    throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                    Swal.fire({
+                        background: '#0F1121',
+                        color: '#FFF',
+                        icon: 'error',
+                        title: 'Erro',
+                        text: 'Houve um erro ao tentar realizar um post!',
+                    })
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+
+        return false;
+
+    }
+
 
     function editar(idPost) {
         sessionStorage.ID_POSTAGEM_EDITANDO = idPost;
@@ -238,6 +303,9 @@
                         var divButtons = document.createElement("div");
                         var btnEditar = document.createElement("button");
                         var btnDeletar = document.createElement("button");
+                        var divResposta = document.createElement("div");
+                        var txtResposta  = document.createElement("textarea");
+                        var btnResposta  = document.createElement("button");
 
 
                         // spanID.innerHTML = '<h3>ID:</h3> <span class="textoPosts">' + publicacao.idPost + '</span>' ;
@@ -246,14 +314,19 @@
                         divDescricao.innerHTML = '<h4>Descrição:</h4> <span class="textoPosts">' + publicacao.descricao + '</span>';
                         btnEditar.innerHTML = '<h4>Editar</h4>';
                         btnDeletar.innerHTML = '<h4>Deletar</h4>';
+                        divResposta.innerHTML = '<h4>Publique sua resposta</h4>';
+                        btnResposta.innerHTML = 'Responder'
 
                         divPublicacao.className = "publicacao";
                         spanTitulo.id = "inputNumero" + publicacao.idPost;
                         spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
                         divDescricao.className = "publicacao-descricao";
-
                         divButtons.className = "div-buttons"
+                        txtResposta.className = "txt_resposta";
+                        divResposta.className = "div_resposta";
+                        btnResposta.className = "btn_resposta";
+                        txtResposta.id = "txtarea_resposta_post";
 
                         btnEditar.className = "publicacao-btn-editar"
                         btnEditar.id = "btnEditar" + publicacao.idPost;
@@ -263,11 +336,16 @@
                         btnDeletar.id = "btnDeletar" + publicacao.idPost;
                         btnDeletar.setAttribute("onclick", `deletar(${publicacao.idPost})`);
 
+                        btnResposta.setAttribute("onclick", `publicarResposta()`);
+
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanTitulo);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
+                        divPublicacao.appendChild(divResposta);
+                        divResposta.appendChild(txtResposta);
+                        divResposta.appendChild(btnResposta);
                         divButtons.appendChild(btnEditar);
                         divButtons.appendChild(btnDeletar);
                         feed.appendChild(divPublicacao);
