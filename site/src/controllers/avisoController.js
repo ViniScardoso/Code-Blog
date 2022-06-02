@@ -61,6 +61,21 @@ function listarCmais(req, res) {
     });
 }
 
+function listarRespostas(req, res) {
+    avisoModel.listarRespostas().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
@@ -220,14 +235,16 @@ function publicarCmais(req, res) {
 }
 
 function publicarResposta(req, res) {
-
+    var idUsuario = req.body.idUsuario;
     var descricao = req.body.conteudo;
-    var idPost = req.body.idPost;
+    var idPost = req.params.idPost;
+
+    console.log('Esse é o id do user: ' + idUsuario);
 
     if (descricao == undefined) {
         res.status(400).send("A descricao está indefinida!");
     } else {
-        avisoModel.publicarResposta(descricao, idPost)
+        avisoModel.publicarResposta(descricao, idPost, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -267,6 +284,20 @@ function editar(req, res) {
 function deletar(req, res) {
     var idPost = req.params.idPost;
 
+    avisoModel.deletarComResposta(idPost)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
     avisoModel.deletar(idPost)
         .then(
             function (resultado) {
@@ -288,6 +319,7 @@ module.exports = {
     listarPy,
     listarJava,
     listarCmais,
+    listarRespostas,
     listarPorUsuario,
     pesquisarDescricao,
     publicarJs,

@@ -125,6 +125,7 @@ textarea{
 
 .publicacao h2{
     margin: 0;
+    margin-bottom: 10px;
     width: fit-content;
 }
 
@@ -146,6 +147,15 @@ textarea{
     font-size: 14px;
     margin-top: 3px;
     margin-left: 3px;
+    margin-bottom: 20px;
+}
+
+.publicacao-nome{
+    margin-bottom: 0;
+}
+
+.publicacao-descricao{
+    margin-top: 0;
 }
 
 .publicacao button{
@@ -178,4 +188,13 @@ textarea{
 .btn_resposta{
     width: 10%;
     margin-top: 1%;
+}
+
+.div_comments{
+    display: flex;
+}
+
+.div_parteComments{
+    margin-top: 2%;
+    border-top: 4px solid #41465A ;
 }

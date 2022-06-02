@@ -23,6 +23,10 @@ router.get("/listarCmais", function (req, res) {
     avisoController.listarCmais(req, res);
 });
 
+router.get("/listarRespostas", function (req, res) {
+    avisoController.listarRespostas(req, res);
+});
+
 router.get("/listar/:idUsuario", function (req, res) {
     avisoController.listarPorUsuario(req, res);
 });
