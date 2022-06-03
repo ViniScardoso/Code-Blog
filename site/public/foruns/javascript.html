@@ -13,7 +13,7 @@
     <title>Code Blog</title>
 </head>
 
-<body onload="atualizarFeed(), atualizarFeedRespostas(), validarSessao()">
+<body onload="atualizarFeed(), atualizarFeedRespostasTempo(), validarSessao()">
     <div class="content">
         <div class="header">
             <div style="display: inherit;">
@@ -56,6 +56,12 @@
 
 </html>
 <script>
+
+    function atualizarFeedRespostasTempo(){
+        setTimeout(() => {
+            atualizarFeedRespostas();
+        }, 500);
+    }
     
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
@@ -332,6 +338,7 @@
 
                         divAllComments.className = 'div_parteComments';
                         divComments.className = 'div_comments';
+                        divComments.id = 'div_commentsID';
                         divPublicacao.className = "publicacao";
                         spanTitulo.id = "inputNumero" + publicacao.idPost;
                         spanNome.className = "publicacao-nome";
@@ -388,7 +395,7 @@
 
     function atualizarFeedRespostas() {
         //aguardar();
-        fetch("/avisos/listarRespostas").then(function (resposta) {
+        fetch("/avisos/listarRespostasJs").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     throw "Nenhuma resposta foi feita para este post ";
@@ -397,25 +404,28 @@
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
+                    var divResposta = document.getElementById("div_commentsID");
+                    divResposta.innerHTML = '';
                     for (let i = 0; i < resposta.length; i++) {
                         var publicacao = resposta[i];
-
-                        var divResposta = document.createElement("div");
+                        
+                        var divCadaResposta = document.createElement("div")
                         var divUserName = document.createElement("div");
                         var spanUserResposta = document.createElement("span");
                         var spanConteudo = document.createElement("span");
 
                         
-                        spanUserResposta.innerHTML = "Usuário: " + publicacao.nome;
+                        spanUserResposta.innerHTML = "<b>" + publicacao.nome + "</b>";
                         spanConteudo.innerHTML = publicacao.descricao;
 
-                        divResposta.className("div_comentarios");
+                        divUserName.className = 'userResposta';
+                        spanConteudo.className = 'comments_post';
+                        divCadaResposta.className = 'div_cadaResposta';
 
                         divUserName.appendChild(spanUserResposta);
-                        divComments.appendChild(divUserName);
-                        divComments.appendChild(spanConteudo)
+                        divCadaResposta.appendChild(divUserName);
+                        divCadaResposta.appendChild(spanConteudo);
+                        divResposta.appendChild(divCadaResposta);
                     }
 
                 });

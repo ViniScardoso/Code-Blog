@@ -23,8 +23,20 @@ router.get("/listarCmais", function (req, res) {
     avisoController.listarCmais(req, res);
 });
 
-router.get("/listarRespostas", function (req, res) {
-    avisoController.listarRespostas(req, res);
+router.get("/listarRespostasJs", function (req, res) {
+    avisoController.listarRespostasJs(req, res);
+});
+
+router.get("/listarRespostasPy", function (req, res) {
+    avisoController.listarRespostasPy(req, res);
+});
+
+router.get("/listarRespostasJava", function (req, res) {
+    avisoController.listarRespostasJava(req, res);
+});
+
+router.get("/listarRespostasCmais", function (req, res) {
+    avisoController.listarRespostasCmais(req, res);
 });
 
 router.get("/listar/:idUsuario", function (req, res) {

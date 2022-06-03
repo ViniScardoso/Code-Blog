@@ -190,11 +190,17 @@ textarea{
     margin-top: 1%;
 }
 
-.div_comments{
-    display: flex;
-}
-
 .div_parteComments{
     margin-top: 2%;
     border-top: 4px solid #41465A ;
+}
+
+.div_cadaResposta{
+    background-color: #41465A;
+    padding: 10px;
+    margin-bottom: 2%;
+}
+
+.userResposta{
+    margin-bottom: 15px;
 }

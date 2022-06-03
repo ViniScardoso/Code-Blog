@@ -80,19 +80,73 @@ function listarCmais() {
     return database.executar(instrucao);
 }
 
-function listarRespostas() {
+function listarRespostasJs() {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-        SELECT 
-            a.idResposta,
-            a.descricao,
-            a.fkPost,
-            a.fkUsuario,
-            u.idUsuario,
-            u.nome,
-        FROM resposta a
-            INNER JOIN usuario u
-                ON a.fkUsuario = u.idUsuario order by idResposta desc;
+    SELECT 
+        a.idResposta,
+        a.descricao,
+        a.fkPost,
+        a.fkUsuario,
+        u.idUsuario,
+        u.nome
+         FROM resposta a
+        INNER JOIN usuario u
+            ON a.fkUsuario = u.idUsuario join post on idPost = a.fkPOst and linguagem = 'javascript' order by idResposta desc;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listarRespostasPy() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    SELECT 
+        a.idResposta,
+        a.descricao,
+        a.fkPost,
+        a.fkUsuario,
+        u.idUsuario,
+        u.nome
+         FROM resposta a
+        INNER JOIN usuario u
+            ON a.fkUsuario = u.idUsuario join post on idPost = a.fkPOst and linguagem = 'python' order by idResposta desc;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listarRespostasJava() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    SELECT 
+        a.idResposta,
+        a.descricao,
+        a.fkPost,
+        a.fkUsuario,
+        u.idUsuario,
+        u.nome
+         FROM resposta a
+        INNER JOIN usuario u
+            ON a.fkUsuario = u.idUsuario join post on idPost = a.fkPOst and linguagem = 'java' order by idResposta desc;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listarRespostasCmais() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    SELECT 
+        a.idResposta,
+        a.descricao,
+        a.fkPost,
+        a.fkUsuario,
+        u.idUsuario,
+        u.nome
+         FROM resposta a
+        INNER JOIN usuario u
+            ON a.fkUsuario = u.idUsuario join post on idPost = a.fkPOst and linguagem = 'c++' order by idResposta desc;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -217,7 +271,10 @@ module.exports = {
     listarPy,
     listarJava,
     listarCmais,
-    listarRespostas,
+    listarRespostasJs,
+    listarRespostasPy,
+    listarRespostasJava,
+    listarRespostasCmais,
     listarPorUsuario,
     pesquisarDescricao,
     publicarJs,

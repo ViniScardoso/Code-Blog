@@ -61,8 +61,50 @@ function listarCmais(req, res) {
     });
 }
 
-function listarRespostas(req, res) {
-    avisoModel.listarRespostas().then(function (resultado) {
+function listarRespostasJs(req, res) {
+    avisoModel.listarRespostasJs().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarRespostasPy(req, res) {
+    avisoModel.listarRespostasPy().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarRespostasJava(req, res) {
+    avisoModel.listarRespostasJava().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarRespostasCmais(req, res) {
+    avisoModel.listarRespostasCmais().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -319,7 +361,10 @@ module.exports = {
     listarPy,
     listarJava,
     listarCmais,
-    listarRespostas,
+    listarRespostasJs,
+    listarRespostasPy,
+    listarRespostasJava,
+    listarRespostasCmais,
     listarPorUsuario,
     pesquisarDescricao,
     publicarJs,
