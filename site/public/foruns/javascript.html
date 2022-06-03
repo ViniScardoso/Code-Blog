@@ -13,7 +13,7 @@
     <title>Code Blog</title>
 </head>
 
-<body onload="atualizarFeed(), atualizarFeedRespostasTempo(), validarSessao()">
+<body onload="atualizarFeed(), validarSessao()">
     <div class="content">
         <div class="header">
             <div style="display: inherit;">
@@ -56,6 +56,8 @@
 
 </html>
 <script>
+
+    var incrementoId = 1;
 
     function atualizarFeedRespostasTempo(){
         setTimeout(() => {
@@ -307,7 +309,7 @@
                             var divButtons = document.createElement("div");
                             var btnEditar = document.createElement("button");
                             var btnDeletar = document.createElement("button");
-                            divButtons.className = "div-buttons"
+                            divButtons.className = "div-buttons";
                         }
 
                         // criando e manipulando elementos do HTML via JavaScript
@@ -338,7 +340,7 @@
 
                         divAllComments.className = 'div_parteComments';
                         divComments.className = 'div_comments';
-                        divComments.id = 'div_commentsID';
+                        divComments.id = 'div_commentsID' + i;
                         divPublicacao.className = "publicacao";
                         spanTitulo.id = "inputNumero" + publicacao.idPost;
                         spanNome.className = "publicacao-nome";
@@ -382,7 +384,10 @@
                         divResposta.appendChild(btnResposta);
                      
                         feed.appendChild(divPublicacao);
+
+                        atualizarFeedRespostas();
                     }
+
 
                 });
             } else {
@@ -404,9 +409,9 @@
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var divResposta = document.getElementById("div_commentsID");
-                    divResposta.innerHTML = '';
+                    // divResposta.innerHTML = '';
                     for (let i = 0; i < resposta.length; i++) {
+                        var divResposta = document.getElementById("div_commentsID" + i);
                         var publicacao = resposta[i];
                         
                         var divCadaResposta = document.createElement("div")
@@ -427,6 +432,8 @@
                         divCadaResposta.appendChild(spanConteudo);
                         divResposta.appendChild(divCadaResposta);
                     }
+
+                    incrementoId++;
 
                 });
             } else {
