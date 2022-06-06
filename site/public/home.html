@@ -1,91 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../js/funcoes.js"></script>
-    <link rel="shortcut icon" href="assets/imgs/Logo.png" type="image" href="style.css">
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link
+      rel="shortcut icon"
+      href="assets/imgs/Logo.png"
+      type="image"
+      href="style.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <title>Code Blog</title>
-</head>
+  </head>
 
-<body onload="mudaFoto(), validarSessao()">
+  <body onload="mudaFoto(), validarSessao()">
     <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <img src="assets/imgs/Logo.png" alt="">
-                <div class="logo_name">
-                    Code Blog
-                </div>
-            </div>
-            <i class='bx bx-menu bx-sm' id="btn_menu"></i>
+      <div class="logo_content">
+        <div class="logo">
+          <img src="assets/imgs/Logo.png" alt="" />
+          <div class="logo_name">Code Blog</div>
         </div>
-        <ul class="nav_list">
-            <li>
-                <a href="home.html">
-                    <i class='bx bx-home-alt-2 bx-sm'></i>
-                    <span class="links_name">Home</span>
-                </a>
-                <span class="tooltip">Home</span>
-            </li>
-            <li>
-                <a href="forum.html">
-                    <i class='bx bx-chat bx-sm'></i>
-                    <span class="links_name">Fórum</span>
-                </a>
-                <span class="tooltip">Forum</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-code bx-sm'></i>
-                    <span class="links_name">Learn</span>
-                </a>
-                <span class="tooltip">Learn</span>
-            </li>
-            <li>
-                <a href="profile.html">
-                    <i class='bx bx-user bx-sm'></i>
-                    <span class="links_name">Account</span>
-                </a>
-                <span class="tooltip">Account</span>
-            </li>
-        </ul>
-        <div class="profile_content">
-            <div class="profile">
-                <div class="profile_details">
-                    <img id="fotoPerfil" src="" alt="">
-                    <div class="name_job">
-                        <div class="name"><span id="b_usuario">Usuário</span></div>
-                    </div>
-                </div>
-                <a onclick="limparSessao()">
-                    <i class='bx bx-log-out' id='logout'></i>
-                </a>
+        <i class="bx bx-menu bx-sm" id="btn_menu"></i>
+      </div>
+      <ul class="nav_list">
+        <li>
+          <a href="home.html">
+            <i class="bx bx-home-alt-2 bx-sm"></i>
+            <span class="links_name">Home</span>
+          </a>
+          <span class="tooltip">Home</span>
+        </li>
+        <li>
+          <a href="forum.html">
+            <i class="bx bx-chat bx-sm"></i>
+            <span class="links_name">Fórum</span>
+          </a>
+          <span class="tooltip">Forum</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-code bx-sm"></i>
+            <span class="links_name">Learn</span>
+          </a>
+          <span class="tooltip">Learn</span>
+        </li>
+        <li>
+          <a href="profile.html">
+            <i class="bx bx-user bx-sm"></i>
+            <span class="links_name">Account</span>
+          </a>
+          <span class="tooltip">Account</span>
+        </li>
+      </ul>
+      <div class="profile_content">
+        <div class="profile">
+          <div class="profile_details">
+            <img id="fotoPerfil" src="" alt="" />
+            <div class="name_job">
+              <div class="name"><span id="b_usuario">Usuário</span></div>
             </div>
+          </div>
+          <a onclick="limparSessao()">
+            <i class="bx bx-log-out" id="logout"></i>
+          </a>
         </div>
+      </div>
     </div>
     <div class="home_content">
-        <div class="text">
-            Home Content
+      <h1>O que é programação?</h1>
+
+      <div class="paragrafos_home">
+        <div class="intro_code">
+            <p>De forma geral, a programação é um processo de escrita, testes e manutenção de programas de computadores. Esses programas, por sua vez, são compostos por conjuntos de instruções determinados pelo programador que descrevem tarefas a serem realizadas pela máquina e atendem diversas finalidades. Esse ato pode ser feito através de diversas ferramentas diferentes, as chamadas linguagens de programação. Cada linguagem possui suas características, peculiaridades e contexto de uso, mas antes de entrar nesse mérito, veja um pouco como a programação começou e se tornou algo tão presente em nossas vidas</p>
+
+            <img src="https://img.olhardigital.com.br/wp-content/uploads/2019/07/20190722050633.jpg" alt="">
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
 <script>
-    // script para a barra lateral
+  // script para a barra lateral
 
-    let btn_menu = document.querySelector("#btn_menu");
-    let sidebar = document.querySelector(".sidebar");
+  let btn_menu = document.querySelector("#btn_menu");
+  let sidebar = document.querySelector(".sidebar");
 
-    btn_menu.onclick = function() {
-        sidebar.classList.toggle("active");
-    }
+  btn_menu.onclick = function () {
+    sidebar.classList.toggle("active");
+  };
 
-
-    function mudaFoto(){
-        fotoPerfil.src = sessionStorage.IMAGEM_USUARIO;
-    }
+  function mudaFoto() {
+    fotoPerfil.src = sessionStorage.IMAGEM_USUARIO;
+  }
 </script>

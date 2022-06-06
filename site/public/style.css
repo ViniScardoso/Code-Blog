@@ -6,10 +6,7 @@ body{
     font-family: 'Poppins';
     color: white;
     background-color: #0F1121;
-    position: relative;
-    min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 button{
@@ -678,5 +675,24 @@ textarea:focus, input:focus {
     cursor: pointer;
 }
 
-
 /* Fim forum */
+
+/* Início home */
+
+.paragrafos_home{
+    width: 80%;
+}
+
+
+.intro_code{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.intro_code img{
+    height: 300px;;
+}
+
+/* Fim home */
