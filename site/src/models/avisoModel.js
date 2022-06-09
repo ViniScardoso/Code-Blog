@@ -14,7 +14,7 @@ function listarJs() {
             u.senha
         FROM post a
             INNER JOIN usuario u
-                ON a.fkUsuario = u.idUsuario and linguagem = 'javascript' order by idPost desc;
+                ON a.fkUsuario = u.idUsuario and linguagem = 'javascript';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -80,7 +80,7 @@ function listarCmais() {
     return database.executar(instrucao);
 }
 
-function listarRespostasJs() {
+function listarRespostasJs(idPost) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
     SELECT 
@@ -92,7 +92,7 @@ function listarRespostasJs() {
         u.nome
          FROM resposta a
         INNER JOIN usuario u
-            ON a.fkUsuario = u.idUsuario join post on idPost = a.fkPOst and linguagem = 'javascript' order by idResposta desc;
+            ON a.fkUsuario = u.idUsuario join post on idPost = a.fkPOst and idPost = ${idPost} order by idResposta desc;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

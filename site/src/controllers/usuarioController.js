@@ -60,6 +60,87 @@ function entrar(req, res) {
 
 }
 
+function qtdPostsJs(req, res) {
+    var idUsuario = req.body.idUsuario;
+
+        usuarioModel.qtdPostsJs(idUsuario)
+            .then(
+                function (resultado) {
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    console.log(resultado);
+                    res.json(resultado[0]);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function qtdPostsJava(req, res) {
+    var idUsuario = req.body.idUsuario;
+
+        usuarioModel.qtdPostsJava(idUsuario)
+            .then(
+                function (resultado) {
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    console.log(resultado);
+                    res.json(resultado[0]);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function qtdPostsPy(req, res) {
+    var idUsuario = req.body.idUsuario;
+
+        usuarioModel.qtdPostsPy(idUsuario)
+            .then(
+                function (resultado) {
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    console.log(resultado);
+                    res.json(resultado[0]);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function qtdPostsCmais(req, res) {
+    var idUsuario = req.body.idUsuario;
+
+        usuarioModel.qtdPostsCmais(idUsuario)
+            .then(
+                function (resultado) {
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    console.log(resultado);
+                    res.json(resultado[0]);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -135,6 +216,10 @@ function atualizarPerfil(req, res) {
     }
 
     module.exports = {
+        qtdPostsJs,
+        qtdPostsJava,
+        qtdPostsPy,
+        qtdPostsCmais,
         entrar,
         cadastrar,
         listar,

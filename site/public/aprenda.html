@@ -69,66 +69,79 @@
     </div>
     <div class="home_content">
         <div class="header">
-            <i class='bx bx-chat bx-lg'></i>
-            <h1>Fórum</h1>
+            <i class='bx bx-code bx-lg'></i>
+            <h1>Aprenda a programar!</h1>
         </div>
 
-        <div class="tituloForum">
-            <h1>Algum problema em seu código? tire sua dúvida relacionada as principais linguagens do mercado</h1>
-        </div>
-        <div class="Foruns">
-            <div class="metade1">
-                <div class="forum">
-                    <div class="titulo_forum">
-                        <i class='bx bxl-javascript bx-md'></i>
-                        <h2>Javascript</h2>
-                    </div>
-                    <p>Entre no fórum de Javascript</p>
-                    <button class="btn_forum" onclick="window.location = 'foruns/javascript.html';">Entrar</button>
+        <div class="conteudos">
+            <div class="aulas">
+                <div class="headerAulas">
+                    <i class='bx bxl-javascript bx-md'></i>
+                    <h2>Javascript</h2>
                 </div>
-                <div class="forum">
-                    <div class="titulo_forum">
-                        <i class='bx bxl-python bx-md'></i>
-                        <h2>Python</h2>
-                    </div>
-                    <p>Entre no fórum de Python</p>
-                    <button class="btn_forum" onclick="window.location = 'foruns/python.html';">Entrar</button>
-                </div>
+
+                <p>JavaScript é uma linguagem de programação interpretada, baseada em orientação a objetos utilizada
+                para client-side utilizada principalmente em navegadores web, mas também em outros ambientes como
+                Node.js ou Apache CouchDB. É uma linguagem de script multiplataforma.</p>
+
+                <button onclick="window.open('https://www.w3schools.com/js/default.asp')" class="btn_forum">Aprender mais</button>
             </div>
-            <div class="metade2">
-                <div class="forum">
-                    <div class="titulo_forum">
-                        <i class='bx bxl-java bx-md'></i>
-                        <h2>Java</h2>
-                    </div>
-                    <p>Entre no fórum de Java</p>
-                    <button class="btn_forum" onclick="window.location = 'foruns/java.html';">Entrar</button>
+            <div class="aulas">
+                <div class="headerAulas">
+                    <i class='bx bxl-python bx-md'></i>
+                    <h2>Python</h2>
                 </div>
-                <div class="forum">
-                    <div class="titulo_forum">
-                        <i class='bx bxl-c-plus-plus bx-md'></i>
-                        <h2>C++</h2>
-                    </div>
-                    <p>Entre no fórum de C++</p>
-                    <button class="btn_forum" onclick="window.location = 'foruns/c++.html';">Entrar</button>
+
+                <p>Python é uma linguagem de programação multiparadigma, ou seja, suporta diversos paradigmas de
+                desenvolvimento. Desta forma, com o Python um mesmo programa pode ser feito utilizando diferentes
+                paradigmas ou um único programa poderá ser desenvolvido utilizando mais de um paradigma.</p>
+
+                <button onclick="window.open('https://www.w3schools.com/python/default.asp')" class="btn_forum">Aprender mais</button>
+            </div>
+            <div class="aulas">
+                <div class="headerAulas">
+                    <i class='bx bxl-java bx-md'></i>
+                    <h2>Java</h2>
                 </div>
+
+                <p>Java é um tipo de linguagem de programação criada e comercializada pela Sun Microsystems desde 1995.
+                É definida como uma linguagem orientada a objetos.
+
+                Sua intenção é permitir que os desenvolvedores escrevam o programa apenas uma vez e o executem por
+                meio de qualquer dispositivo.</p>
+
+                <button onclick="window.open('https://www.w3schools.com/java/')" class="btn_forum">Aprender mais</button>
+            </div>
+            <div class="aulas">
+                <div class="headerAulas">
+                    <i class='bx bxl-c-plus-plus bx-md'></i>
+                    <h2>C++</h2>
+                </div>
+
+                <p>
+                C++ é uma linguagem de programação multiplataforma, multi-paradigma e de médio nível, isto é, combina características de linguagens de alto e baixo níveis. É uma das linguagens mais populares do mundo, sendo muito utilizada também na área acadêmica para compor grade de disciplinas de curso superior.
+                </p>
+
+                <button onclick="window.open('https://www.w3schools.com/cpp/default.asp')" class="btn_forum">Aprender mais</button>
             </div>
         </div>
     </div>
+
 </body>
-</html>
+
 <script>
     // script para a barra lateral
 
     let btn_menu = document.querySelector("#btn_menu");
     let sidebar = document.querySelector(".sidebar");
 
-    btn_menu.onclick = function() {
+    btn_menu.onclick = function () {
         sidebar.classList.toggle("active");
     }
 
-
-    function mudaFoto(){
+    function mudaFoto() {
         fotoPerfil.src = sessionStorage.IMAGEM_USUARIO;
     }
 </script>
+
+</html>

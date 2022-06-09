@@ -483,7 +483,7 @@ textarea:focus, input:focus {
 
 .update_picture{
     width: 85%;
-    height: 25%;
+    height: 30%;
     background-color: #393c4b;
     display: flex;
     align-items: center;
@@ -538,7 +538,7 @@ textarea:focus, input:focus {
 
 .user_information{
     width: 85%;
-    height: 53%;
+    height: 50%;
     background-color: #393c4b;
     margin-top: 5%;
     position: relative;
@@ -601,11 +601,19 @@ textarea:focus, input:focus {
     justify-content: center;
 }
 
+
+.grafico{
+    border: solid 2px #0F1121;
+    width: 40%;
+    height: 80%;
+    margin-right: 7%;
+}
 /* Fim página perfil */
 
 /* Início fórum */
 
 .tituloForum{
+    margin-top: 4%;
     width: 70%;
     display: flex;
     text-align: center;
@@ -679,20 +687,131 @@ textarea:focus, input:focus {
 
 /* Início home */
 
+.header{
+    width: 95%;
+    display: flex;
+    margin-left: 7%;
+    margin-top: 1%;
+    top: 0;
+    position: absolute;
+}
+
+.header i{
+    margin-top: 1.5%;
+    margin-right: 0.5%;
+}
+
 .paragrafos_home{
     width: 80%;
 }
 
+.paragrafos_home img{
+    margin-top: 1%;
+    height: 200px;
+}
 
 .intro_code{
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    text-align: justify;
 }
 
-.intro_code img{
-    height: 300px;;
+
+.inicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    display: none;
 }
 
+.advento{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    display: none;
+}
+
+.primeiras{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    display: none;
+}
+
+.decada6070{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    display: none;
+}
+
+.decada80{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    display: none;
+}
+
+.decada90{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    display: none;
+}
+
+.img_text{
+    width: 80%;
+    display: flex;
+    justify-content:space-between;
+}
+
+.setas{
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+}
+
+.setas i{
+    cursor: pointer;
+}
 /* Fim home */
+
+/* Inicio aprenda */
+
+.conteudos{
+    margin-top: 5%;
+    display: flex;
+    height: 80%;
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
+
+.aulas{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    border: 1px solid black;
+    width: 40%;
+    height: 40%;
+    padding: 1%;
+    background-color: #393c4b;
+}
+
+.headerAulas{
+    display: flex;
+    width: 100%;
+}
+
+.headerAulas h2{
+    margin: 0;
+}
+/* fim aprenda */

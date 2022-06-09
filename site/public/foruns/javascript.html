@@ -57,14 +57,15 @@
 </html>
 <script>
 
+    var qtdPostsFeitos = 0;
     var incrementoId = 1;
 
-    function atualizarFeedRespostasTempo(){
+    function atualizarFeedRespostasTempo() {
         setTimeout(() => {
             atualizarFeedRespostas();
         }, 500);
     }
-    
+
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
@@ -91,7 +92,7 @@
 
 
     function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;  
+        var idUsuario = sessionStorage.ID_USUARIO;
 
         var corpo = {
             titulo: form_postagem.titulo.value,
@@ -158,7 +159,6 @@
 
     function publicarResposta(idPost) {
         var idUsuario = sessionStorage.ID_USUARIO;
-
         var conteudo = txtarea_resposta_post.value;
 
         if (conteudo == '' || conteudo == '') {
@@ -215,7 +215,10 @@
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
+
         }
+
+
 
         return false;
 
@@ -271,12 +274,12 @@
                     } else {
                         throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
                         Swal.fire({
-                        background: '#0F1121',
-                        color: '#FFF',
-                        icon: 'error',
-                        title: 'Erro',
-                        text: 'Houve um erro ao tentar deletar um post!',
-                    })
+                            background: '#0F1121',
+                            color: '#FFF',
+                            icon: 'error',
+                            title: 'Erro',
+                            text: 'Houve um erro ao tentar deletar um post!',
+                        })
                     }
                 }).catch(function (resposta) {
                     console.log(`#ERRO: ${resposta}`);
@@ -320,8 +323,8 @@
                         var divDescricao = document.createElement("div");
                         var divComments = document.createElement("div");
                         var divResposta = document.createElement("div");
-                        var txtResposta  = document.createElement("textarea");
-                        var btnResposta  = document.createElement("button");
+                        var txtResposta = document.createElement("textarea");
+                        var btnResposta = document.createElement("button");
                         var spanComments = document.createElement("span");
                         var divAllComments = document.createElement("div");
 
@@ -334,7 +337,7 @@
                         spanComments.innerHTML = '<h3>Respostas:</h3>'
 
                         divComments.innerHTML = '<p>Nenhuma resposta publicada para esse post</p>';
-                       
+
                         divResposta.innerHTML = '<h4>Publique sua resposta</h4>';
                         btnResposta.innerHTML = 'Responder'
 
@@ -351,19 +354,19 @@
                         btnResposta.className = "btn_resposta";
                         txtResposta.id = "txtarea_resposta_post";
 
-                        if(sessionStorage.ID_USUARIO == publicacao.idUsuario){
+                        if (sessionStorage.ID_USUARIO == publicacao.idUsuario) {
                             btnEditar.className = "publicacao-btn-editar"
                             btnEditar.id = "btnEditar" + publicacao.idPost;
                             btnEditar.setAttribute("onclick", `editar(${publicacao.idPost})`);
                             btnEditar.innerHTML = "Editar";
-    
+
                             btnDeletar.className = "publicacao-btn-editar"
                             btnDeletar.id = "btnDeletar" + publicacao.idPost;
                             btnDeletar.setAttribute("onclick", `deletar(${publicacao.idPost})`);
                             btnDeletar.innerHTML = "Deletar";
                         }
 
-                      
+
 
                         btnResposta.setAttribute("onclick", `publicarResposta(${publicacao.idPost})`);
 
@@ -371,7 +374,7 @@
                         divPublicacao.appendChild(spanTitulo);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(divDescricao);
-                        if(sessionStorage.ID_USUARIO == publicacao.idUsuario){
+                        if (sessionStorage.ID_USUARIO == publicacao.idUsuario) {
                             divPublicacao.appendChild(divButtons);
                             divButtons.appendChild(btnEditar);
                             divButtons.appendChild(btnDeletar);
@@ -382,10 +385,12 @@
                         divPublicacao.appendChild(divResposta);
                         divResposta.appendChild(txtResposta);
                         divResposta.appendChild(btnResposta);
-                     
+
                         feed.appendChild(divPublicacao);
 
-                        atualizarFeedRespostas();
+                        qtdPostsFeitos++;
+
+                        atualizarFeedRespostas(publicacao.idPost);
                     }
 
 
@@ -398,9 +403,9 @@
         });
     }
 
-    function atualizarFeedRespostas() {
+    function atualizarFeedRespostas(idPost) {
         //aguardar();
-        fetch("/avisos/listarRespostasJs").then(function (resposta) {
+        fetch(`/avisos/listarRespostasJs/${idPost}`).then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     throw "Nenhuma resposta foi feita para este post ";
@@ -409,17 +414,17 @@
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    // divResposta.innerHTML = '';
+                    var divResposta = document.getElementById("div_commentsID" + 0);
+                    divResposta.innerHTML = '';
                     for (let i = 0; i < resposta.length; i++) {
-                        var divResposta = document.getElementById("div_commentsID" + i);
                         var publicacao = resposta[i];
-                        
+
                         var divCadaResposta = document.createElement("div")
                         var divUserName = document.createElement("div");
                         var spanUserResposta = document.createElement("span");
                         var spanConteudo = document.createElement("span");
 
-                        
+
                         spanUserResposta.innerHTML = "<b>" + publicacao.nome + "</b>";
                         spanConteudo.innerHTML = publicacao.descricao;
 

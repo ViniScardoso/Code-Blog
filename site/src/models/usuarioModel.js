@@ -40,7 +40,45 @@ function atualizarPerfil(nome, email, senha, linguagem, idUsuario){
     return database.executar(instrucao);
 }
 
+
+function qtdPostsJs(idUsuario){
+
+    var instrucao = `select count(idPost) as qtdPosts from post where linguagem = 'javascript' and fkUsuario = ${idUsuario};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function qtdPostsJava(idUsuario){
+
+    var instrucao = `select count(idPost) as qtdPosts from post where linguagem = 'java' and fkUsuario = ${idUsuario};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function qtdPostsPy(idUsuario){
+
+    var instrucao = `select count(idPost) as qtdPosts from post where linguagem = 'python' and fkUsuario = ${idUsuario};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function qtdPostsCmais(idUsuario){
+
+    var instrucao = `select count(idPost) as qtdPosts from post where linguagem = 'c++' and fkUsuario = ${idUsuario};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
 module.exports = {
+    qtdPostsJs,
+    qtdPostsJava,
+    qtdPostsPy,
+    qtdPostsCmais,
     entrar,
     cadastrar,
     listar,

@@ -62,7 +62,9 @@ function listarCmais(req, res) {
 }
 
 function listarRespostasJs(req, res) {
-    avisoModel.listarRespostasJs().then(function (resultado) {
+    var idPost = req.params.idPost;
+
+    avisoModel.listarRespostasJs(idPost).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

@@ -1,101 +1,355 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../js/funcoes.js"></script>
-    <link
-      rel="shortcut icon"
-      href="assets/imgs/Logo.png"
-      type="image"
-      href="style.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <title>Code Blog</title>
-  </head>
 
-  <body onload="mudaFoto(), validarSessao()">
-    <div class="sidebar">
+<head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <script src="../js/funcoes.js"></script>
+   <link rel="shortcut icon" href="assets/imgs/Logo.png" type="image" href="style.css" />
+   <link rel="stylesheet" href="style.css" />
+   <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+   <title>Code Blog</title>
+</head>
+
+<body onload="mudaFoto(), validarSessao()">
+   <div class="sidebar">
       <div class="logo_content">
-        <div class="logo">
-          <img src="assets/imgs/Logo.png" alt="" />
-          <div class="logo_name">Code Blog</div>
-        </div>
-        <i class="bx bx-menu bx-sm" id="btn_menu"></i>
+         <div class="logo">
+            <img src="assets/imgs/Logo.png" alt="" />
+            <div class="logo_name">Code Blog</div>
+         </div>
+         <i class="bx bx-menu bx-sm" id="btn_menu"></i>
       </div>
       <ul class="nav_list">
-        <li>
-          <a href="home.html">
-            <i class="bx bx-home-alt-2 bx-sm"></i>
-            <span class="links_name">Home</span>
-          </a>
-          <span class="tooltip">Home</span>
-        </li>
-        <li>
-          <a href="forum.html">
-            <i class="bx bx-chat bx-sm"></i>
-            <span class="links_name">Fórum</span>
-          </a>
-          <span class="tooltip">Forum</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-code bx-sm"></i>
-            <span class="links_name">Learn</span>
-          </a>
-          <span class="tooltip">Learn</span>
-        </li>
-        <li>
-          <a href="profile.html">
-            <i class="bx bx-user bx-sm"></i>
-            <span class="links_name">Account</span>
-          </a>
-          <span class="tooltip">Account</span>
-        </li>
+         <li>
+            <a href="home.html">
+               <i class="bx bx-home-alt-2 bx-sm"></i>
+               <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+         </li>
+         <li>
+            <a href="forum.html">
+               <i class="bx bx-chat bx-sm"></i>
+               <span class="links_name">Fórum</span>
+            </a>
+            <span class="tooltip">Fórum</span>
+         </li>
+         <li>
+            <a href="aprenda.html">
+               <i class="bx bx-code bx-sm"></i>
+               <span class="links_name">Aprenda</span>
+            </a>
+            <span class="tooltip">Aprenda</span>
+         </li>
+         <li>
+            <a href="profile.html">
+               <i class="bx bx-user bx-sm"></i>
+               <span class="links_name">Conta</span>
+            </a>
+            <span class="tooltip">Conta</span>
+         </li>
       </ul>
       <div class="profile_content">
-        <div class="profile">
-          <div class="profile_details">
-            <img id="fotoPerfil" src="" alt="" />
-            <div class="name_job">
-              <div class="name"><span id="b_usuario">Usuário</span></div>
+         <div class="profile">
+            <div class="profile_details">
+               <img id="fotoPerfil" src="" alt="" />
+               <div class="name_job">
+                  <div class="name"><span id="b_usuario">Usuário</span></div>
+               </div>
             </div>
-          </div>
-          <a onclick="limparSessao()">
-            <i class="bx bx-log-out" id="logout"></i>
-          </a>
-        </div>
+            <a onclick="limparSessao()">
+               <i class="bx bx-log-out" id="logout"></i>
+            </a>
+         </div>
       </div>
-    </div>
-    <div class="home_content">
-      <h1>O que é programação?</h1>
+   </div>
+   <div class="home_content">
+
+      <div class="header">
+         <i class="bx bx-home-alt-2 bx-lg"></i>
+         <h1>Home</h1>
+      </div>
 
       <div class="paragrafos_home">
-        <div class="intro_code">
-            <p>De forma geral, a programação é um processo de escrita, testes e manutenção de programas de computadores. Esses programas, por sua vez, são compostos por conjuntos de instruções determinados pelo programador que descrevem tarefas a serem realizadas pela máquina e atendem diversas finalidades. Esse ato pode ser feito através de diversas ferramentas diferentes, as chamadas linguagens de programação. Cada linguagem possui suas características, peculiaridades e contexto de uso, mas antes de entrar nesse mérito, veja um pouco como a programação começou e se tornou algo tão presente em nossas vidas</p>
+         <div class="intro_code"> <!-- div1 -->
+            <h1>O que é programação?</h1>
+            <p>De forma geral, a programação é um processo de escrita, testes e manutenção de programas de
+               computadores.
+               Esses programas, por sua vez, são compostos por conjuntos de instruções determinados pelo
+               programador que
+               descrevem tarefas a serem realizadas pela máquina e atendem diversas finalidades. Esse ato pode ser
+               feito
+               através de diversas ferramentas diferentes, as chamadas linguagens de programação. Cada linguagem
+               possui suas
+               características, peculiaridades e contexto de uso, mas antes de entrar nesse mérito, veja um pouco
+               como a
+               programação começou e se tornou algo tão presente em nossas vidas</p>
 
             <img src="https://img.olhardigital.com.br/wp-content/uploads/2019/07/20190722050633.jpg" alt="">
-        </div>
+         </div>
+
+         <div class="inicio"> <!-- div2 -->
+            <h1>O início da programação</h1>
+
+            <p>De certa forma, a história da programação teve início com Ada Augusta Byron King ou simplesmente Ada
+               Lovelace
+               (nome da província que morava), a primeira programadora de computadores.
+
+               Ada era filha de Lord Byron, um famoso poeta e teve como mentor Augustus de Morgan, um matemático
+               inglês. Ela
+               tinha enormes talentos para a área e quando foi apresentada à Charles Babbage auxiliou-o em sua
+               máquina.
+
+               Charles Babbage foi um dos pioneiros na criação dos computadores e propôs em 1822, na cidade de
+               Londres, um
+               projeto de uma máquina de madeira e latão que poderia realizar vários cálculos, baseada nos cartões
+               perfurados
+               do tear mecânico.
+
+               Ela traduziu e expandiu uma descrição da máquina analítica de Charles Babbage, considerado o
+               primeiro
+               computador da história e escreveu um programa que poderia funcionar nela. Através da interpretação
+               dos artigos
+               do italiano Luigi Menabrea, ela expôs entre os anos de 1842 a 1843, um artigo contando sobre um
+               método para
+               realizar cálculos com a sequência de Bernoulli. Foi considerado um dos primeiros algoritmos criados
+               que podia
+               ser interpretado pela máquina. Apesar dessa descoberta, ela não foi construída nesse período.</p>
+
+            <img
+               src="https://sites.google.com/site/jamissonfatec/_/rsrc/1314497662261/analitica-de-babbage/maquina-de-diferencas-de-babbage/BabbageAnalyticalEngineModel.JPG"
+               alt="">
+         </div>
+
+         <div class="advento"> <!-- div3 -->
+            <h1>O advento das linguagens</h1>
+
+            Ao longo dos tempos foi visto que havia necessidade da criação de linguagens para cada tipo de problema. Por
+            isso surgiram os algoritmos que são uma sequência lógica de instruções que poderiam ser executadas por um
+            agente computacional, quer seja humano, mecânico, eletrônico, etc. Os programas de computadores são escritos
+            por meio de algoritmos que atendem a uma linguagem específica. Elas devem ser escritas de acordo com:
+
+            <ul>
+               <li>As regras de sintaxe específicas;</li>
+               <li>Precisa ser universal, onde um problema pode ser facilmente resolvido por ela através de um
+                  computador;</li>
+               <li> Deve respeitar as normas de semântica.</li>
+            </ul>
+
+            As linguagens foram crescendo, algumas em paralelo, outras buscaram caminhos específicos para atender uma
+            função. Isso levou a produção de diferentes tipos de paradigmas, ou seja, estilos de linguagens e objetivos
+            para as quais deveriam ser criadas como por exemplo surgiram linguagens de programação orientadas a objetos,
+            imperativas, funcionais, estruturadas, etc.
+
+            <img
+               src="https://becode.com.br/wp-content/uploads/2017/02/As-15-principais-linguagens-de-programação-no-mundo.png"
+               alt="">
+         </div>
+
+         <div class="primeiras"> <!-- div4 -->
+            <h1>As primeiras linguagens</h1>
+
+            <p>As primeiras linguagens eram as de máquina desenvolvidas para os primeiros computadores. Os programas
+               eram escritos em código de máquina e inseridos no computador através de cabos. Códigos como
+               0001101010101. <br>
+
+               Nessa época, os programadores viram que era difícil escrever e modificar a linguagem de máquina e logo
+               perceberam que era necessário encontrar uma forma mais fácil de escrever os programas para computador.
+               Assim surgiu Assembly. A Assembly é considerada de baixo nível, pois tem maior proximidade com a máquina.
+               Ela tornou-se uma das mais usadas na época, pois estava mais próxima da máquina e da compreensão humana,
+               cujo compilador (tradutor) trocava o código binário por uma linguagem mais compreensível. Apesar disso,
+               ainda era considerada primitiva e os programadores começaram a buscar outras formas de escrever as
+               linguagens de programação. Isso deu origem as linguagens de alto nível, que estariam mais próximas da
+               compreensão do homem. <br>
+
+               Os anos 50 trouxe também as linguagens de alto nível, utilizadas nas áreas científicas, empresarial e
+               matemática. Linguagens como Fortran (Formula Translation), Lisp (List Processor) e Cobol (Common
+               Business-Oriented Language) foram usadas primeiramente em aplicações com supercomputadores, na criação de
+               software de negócios e desenvolvimento, como por exemplo nos caixas eletrônicos e pela NASA.</p>
+
+            <img src="https://t.ctcdn.com.br/nnfLKVik3D9h2YMinj3R0O05nqo=/1244x700/smart/i379792.jpeg" alt="">
+         </div>
+
+         <div class="decada6070"> <!-- div5 -->
+            <h1>Década de 60 e 70</h1>
+
+            <p>
+               No final da década de 60 até início da década de 70, as linguagens foram evoluindo, ALGOL 60, é um
+               exemplo disso, foi uma linguagem nova para algoritmos que inovou a forma de se escrever códigos.
+               Tornou-se tão popular que evoluiu para ALGOL 68. Mas entrou em defasagem levando posteriormente a criação
+               de uma mais compreensível e estruturada, a Pascal.
+
+               Criada por Niklaus With, em 1970, Pascal é uma linguagem de alto nível usada no ensino da programação
+               estruturada. As versões comerciais da linguagem foram amplamente utilizadas nos anos 80. É usada nos
+               cursos da área de exatas para introdução a lógica de programação, bem como da versão atualizada de
+               Pascal, Object Pascal e para o desenvolvimento de aplicações para o Windows. Empresas como a Apple
+               utilizaram a linguagem para o computador pessoal Lisa, em 1983.
+
+               Outra importante linguagem é a Basic, criada em 1964 por Eugene Kurtz e George Kemeny, nos EUA, para que
+               a população pudesse ter acesso aos computadores. Nesse período apenas cientistas e matemáticos tinham
+               contato com o desenvolvimento de softwares para computador.
+
+               Na década de 70, a linguagem C, foi uma das favoritas. Criada em 1972 por Dennis Ritchie, ela foi
+               desenvolvida nos laboratórios da Bell Telephone para utilização do sistema Unix. Ela é de uso geral e
+               intermediária. Muitas linguagens originaram dela como C#, Java, JavaScript, PHP, Perl e Python. Foi usada
+               primeiramente para multi-plataformas, para a programação do sistema Unix e para o desenvolvimento de
+               jogos de computador.
+            </p>
+
+            <img src="https://programadoresbrasil.com.br/wp-content/uploads/2020/05/C-programming-1024x530-1.jpg"
+               alt="">
+         </div>
+
+         <div class="decada80"> <!-- div6 -->
+            <h1>Década de 80</h1>
+
+            <p>Os anos 80 foram um marco, pois as empresas buscaram investir nas linguagens criadas nas décadas de 60 e
+               70. Um exemplo disso é a C++, uma linguagem de nível intermediário, orientada a objetos. É uma evolução
+               da linguagem C, com melhorias. Ela foi criada por Bjarne Stroustrup em 1983. Seus usos foram para o
+               desenvolvimento de aplicações comerciais, produção de jogos, etc. Adobe, Microsoft (Internet Explorer),
+               Google (Google Chrome), Mozilla Firefox utilizam-na.
+
+               Outra marcante foi Objective-C. De alto nível e de uso geral, é uma ampliação da linguagem C, com a
+               funcionalidade de transmissão de mensagens baseada em Smalltalk. Foi criada em 1983 por Brad Cox e Tom
+               Love. Atualmente, é utilizada principalmente para a programação da Apple, para o sistema operacional OS X
+               e IOS da Apple.
+
+               Outras linguagens importantes criadas na época:
+
+            </p>
+            <div class="img_text">
+               <ul>
+                  <li>Miranda (1982);</li>
+                  <li>Object Pascal (1985)</li>
+                  <li>Common Lisp (1984);</li>
+                  <li>Haskell 1,0 (1987);</li>
+                  <li>Perl (1987).</li>
+                  <li>Eiffel (1986)</li>
+               </ul>
+
+               
+               <img src="https://www.alura.com.br/artigos/assets/formacao-linguagem-c-plus-plus/img-01.png" alt="">
+            </div>
+         </div>
+
+         <div class="decada90"> <!-- div7 -->
+            <h1>Década de 90</h1>
+
+            <p>
+               Originárias das linguagens antigas, as modernas linguagens de programação vieram com um foco inovador para a rede mundial de computadores e para a orietação a objeto, tais como Python, Java e C#.
+
+               Python foi escrita por Guido van Rossum, em 1989, em Amsterdã, na Holanda. É uma linguagem de alto nível, com fácil aprendizagem e utilização. Possui licença open source, portabilidade e é muito utilizada em diversos sistemas operacionais. Empresas como Google e Yahoo fazem o uso dela.
+
+               O grande sucesso veio com Java, em 1995, que foi classificada como uma linguagem de programação orientada a objeto. Foi criada dentro da empresa Sun Microsystems por um grupo liderado por James Gosling que queriam produzir uma ferramenta capaz de ser utilizada independente de um dispositivo eletrônico. É de alto nível e pode ser usada no projeto da TV interativa, para desenvolvimento de aplicações para internet, softwares, interface gráfica, programação de rede, etc. É uma das linguagens que reuniu características de várias outras em uma, afim de produzir uma ferramenta que ‘rodasse’ em qualquer ambiente. Um dos principais usos está na produção de aplicativos para Android.
+
+               Outra que tornou-se muito popular na época foi a C#, pronuncia-se CSharp, está baseada nas linguagens Java e C++, mas tem influência de outras. Foi criada pela Microsoft, em 2001, como parte da plataforma .NET e é orientada a objetos.
+            </p>
+
+            <img src="https://www.tshirtgeek.com.br/wp-content/uploads/2021/03/com001.jpg" alt="">
+         </div>
+
+         <div class="setas">
+            <i onclick="previous()" class='bx bx-left-arrow-alt bx-lg'></i>
+            <i onclick="next()" class='bx bx-right-arrow-alt bx-lg'></i>
+         </div>
       </div>
-    </div>
-  </body>
+   </div>
+</body>
+
 </html>
 <script>
-  // script para a barra lateral
+      var header = document.querySelector(".header");
+      var div1 = document.querySelector(".intro_code");
+      var div2 = document.querySelector(".inicio");
+      var div3 = document.querySelector(".advento");
+      var div4 = document.querySelector(".primeiras");
+      var div5 = document.querySelector(".decada6070");
+      var div6 = document.querySelector(".decada80");  
+      var div7 = document.querySelector(".decada90");  
 
-  let btn_menu = document.querySelector("#btn_menu");
-  let sidebar = document.querySelector(".sidebar");
+      
+      header.style.display = "flex";
+      div1.style.display = "flex";
+      div2.style.display = "none";
+      div3.style.display = "none";
+      div4.style.display = "none";
+      div5.style.display = "none";
+      div6.style.display = "none";
+      div7.style.display = "none";  
 
-  btn_menu.onclick = function () {
-    sidebar.classList.toggle("active");
-  };
+   function next() {
+    
+      if (div1.style.display == "flex") {
+         header.style.display = "none";
+         div1.style.display = "none";
+         div2.style.display = "flex";
+         
+      }
+      else if(div2.style.display == "flex") {
+         div2.style.display = "none";
+         div3.style.display = "flex";
+      }
+      else if(div3.style.display == "flex") {
+         div3.style.display = "none";
+         div4.style.display = "flex";
+      }
+      else if(div4.style.display == "flex") {
+         div4.style.display = "none";
+         div5.style.display = "flex";
+      }
+      else if(div5.style.display == "flex") {
+         div5.style.display = "none";
+         div6.style.display = "flex";
+      }
+      else if(div6.style.display == "flex") {
+         div6.style.display = "none";
+         div7.style.display = "flex";
+      }
 
-  function mudaFoto() {
-    fotoPerfil.src = sessionStorage.IMAGEM_USUARIO;
-  }
+   }
+
+   function previous() {
+      if (div7.style.display == 'flex') {
+         div7.style.display = 'none';
+         div6.style.display = 'flex';
+      }
+      else if(div6.style.display == 'flex') {
+         div6.style.display = 'none';
+         div5.style.display = 'flex';
+      }
+      else if(div5.style.display == 'flex') {
+         div5.style.display = 'none';
+         div4.style.display = 'flex';
+      }
+      else if(div4.style.display == 'flex') {
+         div4.style.display = 'none';
+         div3.style.display = 'flex';
+      }
+      else if(div3.style.display == 'flex') {
+         div3.style.display = 'none';
+         div2.style.display = 'flex';
+      }
+      else if(div2.style.display == 'flex') {
+         div2.style.display = 'none';
+         div1.style.display = 'flex';
+         header.style.display = "flex";
+
+      }
+   }
+
+
+   // script para a barra lateral
+
+   let btn_menu = document.querySelector("#btn_menu");
+   let sidebar = document.querySelector(".sidebar");
+
+   btn_menu.onclick = function () {
+      sidebar.classList.toggle("active");
+   };
+
+   function mudaFoto() {
+      fotoPerfil.src = sessionStorage.IMAGEM_USUARIO;
+   }
 </script>

@@ -23,7 +23,7 @@ router.get("/listarCmais", function (req, res) {
     avisoController.listarCmais(req, res);
 });
 
-router.get("/listarRespostasJs", function (req, res) {
+router.get("/listarRespostasJs/:idPost", function (req, res) {
     avisoController.listarRespostasJs(req, res);
 });
 

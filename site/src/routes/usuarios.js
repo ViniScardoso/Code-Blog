@@ -36,6 +36,22 @@ router.post("/atualizarPerfil", function (req, res) {
     usuarioController.atualizarPerfil(req, res);
 });
 
+router.post("/qtdPostsJs", function (req, res) {
+    usuarioController.qtdPostsJs(req, res);
+});
+
+router.post("/qtdPostsJava", function (req, res) {
+    usuarioController.qtdPostsJava(req, res);
+});
+
+router.post("/qtdPostsPy", function (req, res) {
+    usuarioController.qtdPostsPy(req, res);
+});
+
+router.post("/qtdPostsCmais", function (req, res) {
+    usuarioController.qtdPostsCmais(req, res);
+});
+
 router.post("/upload", upload.single("uploadImg"),function (req, res) {
     res.send("Arquivo recebido");
 });

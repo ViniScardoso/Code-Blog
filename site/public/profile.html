@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
     <title>Code Blog</title>
 </head>
 
-<body onload="validarSessao()">
+<body onload="qtdPostsJs(), qtdPostsPy(), qtdPostsJava(), qtdPostsCmais(), validarSessao()">
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
@@ -37,21 +38,21 @@
                     <i class='bx bx-chat bx-sm'></i>
                     <span class="links_name">Fórum</span>
                 </a>
-                <span class="tooltip">Forum</span>
+                <span class="tooltip">Fórum</span>
             </li>
             <li>
-                <a href="#">
+                <a href="aprenda.html">
                     <i class='bx bx-code bx-sm'></i>
-                    <span class="links_name">Learn</span>
+                    <span class="links_name">Aprenda</span>
                 </a>
-                <span class="tooltip">Learn</span>
+                <span class="tooltip">Aprenda</span>
             </li>
             <li>
                 <a href="profile.html">
                     <i class='bx bx-user bx-sm'></i>
-                    <span class="links_name">Account</span>
+                    <span class="links_name">Conta</span>
                 </a>
-                <span class="tooltip">Account</span>
+                <span class="tooltip">Conta</span>
             </li>
         </ul>
         <div class="profile_content">
@@ -82,15 +83,19 @@
                 </div>
             </div>
 
-            <div>
-                <form method="post" enctype="multipart/form-data" action="/usuarios/upload">  
+            <div class="grafico">
+                <canvas id="myChart" style="width:10vw; height:7.5vh"></canvas>
+            </div>
+
+            <!-- <div>
+                <form method="post" enctype="multipart/form-data" action="/usuarios/upload">
                     <label for="ipt_profileImg" class="upload_img">
                         <input type="file" name="uploadImg" id="ipt_profileImg" accept="image/png, image/jpg, img/jpeg">
                         Escolher imagem
                     </label>
-                    <!-- <input type="submit" value="Realizar upload"> -->
-                </form>
-            </div>
+                    <input type="submit" value="Realizar upload">
+                </form> 
+            </div> -->
 
 
         </div>
@@ -136,6 +141,9 @@
 </script>
 
 <script>
+    var qtdPostsLing = [];
+
+
     function alerta() {
         Swal.fire({
             background: '#0F1121',
@@ -167,51 +175,51 @@
 
         if (nomeVar == "" && emailVar == "" && senhaVar == "" && lingVar == "") {
             Swal.fire({
-                text:'Não deixe nenhum campo vazio',
-                icon:'info',
+                text: 'Não deixe nenhum campo vazio',
+                icon: 'info',
                 background: '#0F1121',
                 color: '#FFF',
             })
         }
         else {
-            
+
             if (nomeVar == "" && emailVar == "" && senhaVar == "" && lingVar != "") { // apenas linguagem preenchida
                 nomeVar = sessionStorage.NOME_USUARIO;
                 emailVar = sessionStorage.EMAIL_USUARIO;
                 senhaVar = sessionStorage.SENHA_USUARIO;
             }
-            else if(nomeVar == "" && emailVar == "" && senhaVar != "" && lingVar == "" ) { // apenas senha preenchida
+            else if (nomeVar == "" && emailVar == "" && senhaVar != "" && lingVar == "") { // apenas senha preenchida
                 nomeVar = sessionStorage.NOME_USUARIO;
                 emailVar = sessionStorage.EMAIL_USUARIO;
                 lingVar = sessionStorage.LINGUAGEM_FAVORITA;
             }
-            else if (nomeVar == "" && emailVar != "" && senhaVar == "" && lingVar == "" ) { // apenas email preenchido
+            else if (nomeVar == "" && emailVar != "" && senhaVar == "" && lingVar == "") { // apenas email preenchido
                 nomeVar = sessionStorage.NOME_USUARIO;
                 lingVar = sessionStorage.LINGUAGEM_FAVORITA;
                 senhaVar = sessionStorage.SENHA_USUARIO;
             }
-            else if (nomeVar != "" && emailVar == "" && senhaVar == "" && lingVar == "" ) { // apenas nome preenchido
+            else if (nomeVar != "" && emailVar == "" && senhaVar == "" && lingVar == "") { // apenas nome preenchido
                 emailVar = sessionStorage.EMAIL_USUARIO;
                 lingVar = sessionStorage.LINGUAGEM_FAVORITA;
                 senhaVar = sessionStorage.SENHA_USUARIO;
             }
-            else if (nomeVar != "" && emailVar != "" && senhaVar == "" && lingVar == "" ) { // nome e email preenchidos
+            else if (nomeVar != "" && emailVar != "" && senhaVar == "" && lingVar == "") { // nome e email preenchidos
                 lingVar = sessionStorage.LINGUAGEM_FAVORITA;
                 senhaVar = sessionStorage.SENHA_USUARIO;
             }
-            else if (nomeVar != "" && emailVar == "" && senhaVar != "" && lingVar == "" ) { // nome e senha preenchidos
+            else if (nomeVar != "" && emailVar == "" && senhaVar != "" && lingVar == "") { // nome e senha preenchidos
                 lingVar = sessionStorage.LINGUAGEM_FAVORITA;
                 emailVar = sessionStorage.EMAIL_USUARIO;
             }
-            else if(nomeVar != "" && emailVar == "" && senhaVar == "" && lingVar != ""){ // nome e linguagem preenchidos
+            else if (nomeVar != "" && emailVar == "" && senhaVar == "" && lingVar != "") { // nome e linguagem preenchidos
                 emailVar = sessionStorage.EMAIL_USUARIO;
                 senhaVar = sessionStorage.SENHA_USUARIO;
             }
-            else if(nomeVar == "" && emailVar != "" && senhaVar != "" && lingVar == ""){ // email e senha preenchidos
+            else if (nomeVar == "" && emailVar != "" && senhaVar != "" && lingVar == "") { // email e senha preenchidos
                 nomeVar = sessionStorage.NOME_USUARIO;
                 lingVar = sessionStorage.LINGUAGEM_FAVORITA;
             }
-            else if(nomeVar == "" && emailVar != "" && senhaVar == "" && lingVar != ""){ // email e linguagem preenchidos
+            else if (nomeVar == "" && emailVar != "" && senhaVar == "" && lingVar != "") { // email e linguagem preenchidos
                 nomeVar = sessionStorage.NOME_USUARIO;
                 senhaVar = sessionStorage.SENHA_USUARIO;
             }
@@ -228,7 +236,7 @@
             else if (nomeVar != "" && emailVar != "" && senhaVar == "" && lingVar != "") { // apenas email mão preenchido
                 emailVar.sessionStorage.EMAIL_USUARIO;
             }
-            else if(nomeVar == "" && emailVar != "" && senhaVar != "" && lingVar != ""){ // apenas nome não preenchido
+            else if (nomeVar == "" && emailVar != "" && senhaVar != "" && lingVar != "") { // apenas nome não preenchido
                 nomeVar = sessionStorage.NOME_USUARIO;
             }
 
@@ -293,6 +301,200 @@
         }
 
         return false;
+    }
+
+    function qtdPostsJs() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/usuarios/qtdPostsJs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuario: idUsuario
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+                    console.log(JSON.stringify(json));
+                    
+                    var qtdPosts = json.qtdPosts;
+                    
+                    qtdPostsLing[0] = qtdPosts;
+
+                });
+            } else {
+                throw ("Houve um erro ao tentar recuperar as informações!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+    }
+
+    function qtdPostsJava() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/usuarios/qtdPostsJava", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuario: idUsuario
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+                    console.log(JSON.stringify(json));
+                    
+                    var qtdPosts = json.qtdPosts;            
+                    qtdPostsLing[1] = qtdPosts; 
+                });
+            } else {
+                throw ("Houve um erro ao tentar recuperar as informações!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+    }
+
+    function qtdPostsPy() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/usuarios/qtdPostsPy", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuario: idUsuario
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+                    console.log(JSON.stringify(json));
+                    
+                    var qtdPosts = json.qtdPosts;
+                    qtdPostsLing[2] = qtdPosts;
+
+                });
+            } else {
+                throw ("Houve um erro ao tentar recuperar as informações!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+    }
+
+    function qtdPostsCmais() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/usuarios/qtdPostsCmais", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuario: idUsuario
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+                    console.log(JSON.stringify(json));
+                    
+                    var qtdPosts = json.qtdPosts;
+                    qtdPostsLing[3] = qtdPosts;
+
+                    plotarGrafico();
+
+                });
+            } else {
+                throw ("Houve um erro ao tentar recuperar as informações!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+    }
+
+    
+    function plotarGrafico(){
+        var dados = {
+            labels: ['Javascript','Java','Python','C++'],
+            datasets: [
+                {
+                    yAxisID: '',
+                    label: 'Quantidade de posts por fórum',
+                    borderColor: '#142833',
+                    backgroundColor: '#142833',
+                    fill: true,
+                    data: []
+                },
+            ]
+        };
+
+        for (let i = 0; i < qtdPostsLing.length; i++) {
+            dados.datasets[0].data.push(qtdPostsLing[i]);
+        }
+
+        var ctx = myChart.getContext('2d');
+        window.myChart = new Chart(ctx, {
+            type: 'bar',
+            data: dados,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                legend: {
+                    labels: {
+                        fontColor: 'white'
+                    }
+                },
+                title: {
+                    display: false,
+                    text: 'Dados capturados',
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-luminosidade',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 10,
+                            fontColor: 'white',
+                        }
+                    },],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: 'white',
+                        }
+                    }]
+                }
+            }
+        });
     }
 
 
