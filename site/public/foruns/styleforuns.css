@@ -78,6 +78,10 @@ textarea{
     border: 3px solid #0F1121;
 }
 
+.div_form input::placeholder{
+    color: white;
+}
+
 .div_form textarea {
     width: 100%;
     border: 3px solid #0F1121;

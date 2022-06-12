@@ -39,8 +39,8 @@ router.get("/listarRespostasCmais", function (req, res) {
     avisoController.listarRespostasCmais(req, res);
 });
 
-router.get("/listar/:idUsuario", function (req, res) {
-    avisoController.listarPorUsuario(req, res);
+router.get("/listarPost/:idPost", function (req, res) {
+    avisoController.listarPost(req, res);
 });
 
 router.get("/pesquisar/:descricao", function (req, res) {

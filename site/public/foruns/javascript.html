@@ -58,13 +58,6 @@
 <script>
 
     var qtdPostsFeitos = 0;
-    var incrementoId = 1;
-
-    function atualizarFeedRespostasTempo() {
-        setTimeout(() => {
-            atualizarFeedRespostas();
-        }, 500);
-    }
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
@@ -226,10 +219,25 @@
 
 
     function editar(idPost) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idPost;
-        console.log("cliquei em editar - " + idPost);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idPost);
-        window.location = "/dashboard/edicao-aviso.html"
+        Swal.fire({
+            background: '#0F1121',
+            color: '#FFF',
+            title: 'Tem certeza ?',
+            text: "Você será redirecionado para a página de edição de post",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Não',
+            confirmButtonText: 'Sim',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                sessionStorage.ID_POSTAGEM_EDITANDO = idPost;
+                sessionStorage.FORUM_ANTERIOR = "javascript";
+                console.log("cliquei em editar - " + idPost);
+                window.location = "edicaoPost.html";
+            }
+        })
 
     }
 

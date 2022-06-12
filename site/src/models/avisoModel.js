@@ -14,7 +14,7 @@ function listarJs() {
             u.senha
         FROM post a
             INNER JOIN usuario u
-                ON a.fkUsuario = u.idUsuario and linguagem = 'javascript';
+                ON a.fkUsuario = u.idUsuario and linguagem = 'javascript' order by idPost desc;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -173,22 +173,16 @@ function pesquisarDescricao(texto) {
     return database.executar(instrucao);
 }
 
-function listarPorUsuario(idUsuario) {
+function listarPost(idPost) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorUsuario()");
     var instrucao = `
         SELECT 
-            a.id AS idPost,
-            a.titulo,
-            a.descricao,
-            a.fkUsuario,
-            u.id AS idUsuario,
-            u.nome,
-            u.email,
-            u.senha
-        FROM aviso a
-            INNER JOIN usuario u
-                ON a.fkUsuario = u.idUsuario 
-        WHERE u.id = ${idUsuario};
+            idPost,
+            titulo,
+            fkUsuario,
+            idUsuario,
+            nome
+        FROM post join usuario on idUsuario = fkUsuario and idPost = ${idPost};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -242,7 +236,7 @@ function publicarResposta(descricao, idPost, idUsuario) {
 function editar(novaDescricao, idPost) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, idPost);
     var instrucao = `
-        UPDATE aviso SET descricao = '${novaDescricao}' WHERE id = ${idPost};
+        UPDATE post SET descricao = '${novaDescricao}' WHERE idPost = ${idPost};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -275,7 +269,7 @@ module.exports = {
     listarRespostasPy,
     listarRespostasJava,
     listarRespostasCmais,
-    listarPorUsuario,
+    listarPost,
     pesquisarDescricao,
     publicarJs,
     publicarPy,

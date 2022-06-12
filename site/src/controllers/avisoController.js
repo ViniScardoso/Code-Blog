@@ -120,10 +120,10 @@ function listarRespostasCmais(req, res) {
 }
 
 
-function listarPorUsuario(req, res) {
-    var idUsuario = req.params.idUsuario;
+function listarPost(req, res) {
+    var idPost = req.params.idPost;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    avisoModel.listarPost(idPost)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -367,7 +367,7 @@ module.exports = {
     listarRespostasPy,
     listarRespostasJava,
     listarRespostasCmais,
-    listarPorUsuario,
+    listarPost,
     pesquisarDescricao,
     publicarJs,
     publicarPy,

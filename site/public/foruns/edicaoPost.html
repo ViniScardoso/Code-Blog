@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/funcoes.js"></script>
+    <link rel="shortcut icon" href="../assets/imgs/Logo.png" type="image" href="style.css">
+    <link rel="stylesheet" href="styleforuns.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Code Blog</title>
+</head>
+
+<body onload="BuscarDados(), validarSessao()">
+    <div class="content">
+        <div class="header">
+            <a onclick="window.location = sessionStorage.FORUM_ANTERIOR + '.html';">Voltar para o Fórum</a>
+        </div>
+        <div class="post">
+            <h2>Edite seu post</h2>
+            <div class="div_form">
+                <label>
+                    iD:
+                    <br>
+                    <input name="id" id="ipt_id" maxlength="100" type="text" disabled>
+                </label>
+                <label>
+                    Autor
+                    <br>
+                    <input name="autor" id="ipt_autor" maxlength="100" type="text" placeholder="" disabled>
+                </label>
+                <label>
+                    Título:
+                    <br>
+                    <input name="titulo" id="ipt_titulo" maxlength="100" type="text" disabled>
+                </label>
+                <br><br>
+                <label>
+                    Nova Descrição:
+                    <br>
+                    <textarea name="descricao" id="textarea_descricao" maxlength="2000" rows="6"></textarea>
+                </label>
+                <br><br>
+                <button onclick="editar()">Editar</button>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function BuscarDados() {
+        fetch(`/avisos/listarPost/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`).then(function (resposta) {
+            if (resposta.ok) {
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    ipt_id.placeholder = resposta[0].idPost;
+                    ipt_autor.placeholder = resposta[0].nome;
+                    ipt_titulo.placeholder = resposta[0].titulo;
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+    function editar() {
+        Swal.fire({
+            background: '#0F1121',
+            color: '#FFF',
+            title: 'Você tem certeza que quer editar esse post?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Não',
+            confirmButtonText: 'Sim',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        descricao: textarea_descricao.value
+                    })
+                }).then(function (resposta) {
+
+                    if (resposta.ok) {
+                            Swal.fire({
+                            icon: 'success',
+                            background: '#0F1121',
+                            color: '#FFF',
+                            title: 'Mudanças Feitas!',
+                            text: 'Seu post foi editado com sucesso.',
+                            confirmButtonText: 'Ok',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location = sessionStorage.FORUM_ANTERIOR + ".html";
+                            }
+                        })
+                    } else if (resposta.status == 404) {
+                        window.alert("Deu 404!");
+                    } else {
+                        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+            }
+        })
+    }
+
+
+</script>
