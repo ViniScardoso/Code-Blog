@@ -6,7 +6,7 @@ body{
     font-family: 'Poppins';
     color: white;
     background-color: #0F1121;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 button{
@@ -225,6 +225,9 @@ textarea:focus, input:focus {
     color: tomato;
 }
 
+small{
+    margin-bottom: 4% ;
+}
 /* Fim Cadastro */
 
 /* Tela Home */

@@ -60,6 +60,8 @@
                 </div>
             </div>
 
+            <small>Já possui uma conta? Faça login clicando <u><a href="index.html">aqui</a></u></small>
+
 
             <button class="botaoLogin" onclick="cadastrar()">Cadastrar</button>
 
@@ -101,6 +103,16 @@
             return false;
         }
         else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (senhaVar.length < 8 || confirmacaoSenhaVar.length < 8) {
+            cardErro.style.display = "flex"
+            mensagem_erro.innerHTML = "Sua senha deve conter pelo menos 8 caractéres";
+
+            finalizarAguardar();
+            return false;
+        } else {
             setInterval(sumirMensagem, 5000)
         }
 
