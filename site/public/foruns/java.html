@@ -57,6 +57,8 @@
 </html>
 <script>
 
+    var qtdPostsFeitos = 0;
+    
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
@@ -391,6 +393,10 @@
                         divResposta.appendChild(btnResposta);
                      
                         feed.appendChild(divPublicacao);
+
+                        qtdPostsFeitos++;
+
+                        atualizarFeedRespostas(publicacao.idPost);
                     }
 
                 });
